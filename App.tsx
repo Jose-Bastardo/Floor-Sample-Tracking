@@ -1,7 +1,9 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import {  Dimensions, Platform, PixelRatio, StyleSheet, Text, View, Button, Alert, ViewPropTypes, AppRegistry, TouchableOpacity} from 'react-native';
+import {CheckBox, Dimensions, Platform, PixelRatio,
+    StyleSheet, Text, View, Button, Alert, ViewPropTypes,
+    AppRegistry, TouchableOpacity, TextInput} from 'react-native';
 import ReactDOM from 'react-dom';
 // @ts-ignore
 import DropdownMenu from 'react-native-dropdown-menu';
@@ -308,6 +310,7 @@ export class Home extends React.Component{
             )
         }
 
+        //-----------------------------------------------------------------------------------------------
         //Render App
         return (
             <View style={styles.body}>
@@ -341,21 +344,31 @@ export class Home extends React.Component{
                     </View>
                     <View style={styles.table}>
                         <View style={styles.thead}>
-                            <TouchableOpacity style={styles.cellsampleid} onPress={this.updateSampleIDsort}>
-                                <Text>Sample ID</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.cellname} onPress={this.updateNameSort}>
-                                <Text>Name</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.celltype} onPress={this.updateTypeSort}>
-                                <Text>Type</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.cellprice} onPress={this.updatePriceSort}>
-                                <Text>Price</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.cellstock} onPress={this.updateStockSort}>
-                                <Text>Stock</Text>
-                            </TouchableOpacity>
+                            <View style={styles.theadsampleid}>
+                                <TouchableOpacity   onPress={this.updateSampleIDsort}>
+                                    <Text>Sample ID</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.theadname}>
+                                <TouchableOpacity  onPress={this.updateNameSort}>
+                                    <Text>Name</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.theadtype} >
+                                <TouchableOpacity onPress={this.updateTypeSort}>
+                                    <Text>Type</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.theadprice}>
+                                <TouchableOpacity  onPress={this.updatePriceSort}>
+                                    <Text>Price</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.theadstock}>
+                                <TouchableOpacity  onPress={this.updateStockSort}>
+                                    <Text>Stock</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                         {table}
                     </View>
@@ -365,6 +378,7 @@ export class Home extends React.Component{
     };
 };
 
+//---------------------------------------------------------------------------------------------------------------------------------
 // @ts-ignore
 class Checkout extends React.Component{
 
@@ -605,8 +619,27 @@ class Checkout extends React.Component{
             this.updateSearch(this.state.search);
         }
     }
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            checkedItems: new Map(),
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e) {
+        const item = e.target.name;
+        const isChecked = e.target.checked;
+        this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
+    }
+
     render() {
         const { search } = this.state;
+
+
 
         // @ts-ignore
         const navigation = this.props.navigation;
@@ -623,6 +656,12 @@ class Checkout extends React.Component{
             }
             table.push(
                 <View key={this.data[i]["sampleid"]} style={rowstyle}>
+                    checkboxes.map(item => (
+                    <label key={item.key}>
+                        {item.name}
+                        <Checkbox name={item.name} checked={this.state.checkedItems.get(item.name)} onChange={this.handleChange} />
+                    </label>
+                    ))
                     <Text style={styles.cellsampleid}>{this.data[i]["sampleid"]}</Text>
                     <Text style={styles.cellname}>{this.data[i]["Name"]}</Text>
                     <Text style={styles.celltype}>{this.data[i]["Type"]}</Text>
@@ -632,6 +671,9 @@ class Checkout extends React.Component{
             )
         }
 
+
+
+        //-------------------------------------------------------------------------------------------------
         return (
             <View style={styles.body}>
                 <View style={styles.header}>
@@ -664,30 +706,32 @@ class Checkout extends React.Component{
                     </View>
                     <View style={styles.table}>
                         <View style={styles.thead}>
-                            <TouchableOpacity style={styles.cellsampleid} onPress={this.updateSampleIDsort}>
+                            <TouchableOpacity style={styles.theadsampleidcheckout} onPress={this.updateSampleIDsort}>
                                 <Text>Sample ID</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.cellname} onPress={this.updateNameSort}>
+                            <TouchableOpacity style={styles.theadname} onPress={this.updateNameSort}>
                                 <Text>Name</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.celltype} onPress={this.updateTypeSort}>
+                            <TouchableOpacity style={styles.theadtype} onPress={this.updateTypeSort}>
                                 <Text>Type</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.cellprice} onPress={this.updatePriceSort}>
+                            <TouchableOpacity style={styles.theadprice} onPress={this.updatePriceSort}>
                                 <Text>Price</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.cellstock} onPress={this.updateStockSort}>
+                            <TouchableOpacity style={styles.theadstock} onPress={this.updateStockSort}>
                                 <Text>Stock</Text>
                             </TouchableOpacity>
                         </View>
                         {table}
+                    </View>
+                    <View style={styles.checkoutform}>
+                        <TextInput placeholder={'First Name'}/>
+                        <TextInput placeholder={'Last Name'}/>
                     </View>
                 </View>
             </View>
         )
     }
 };
-
-
 
 export default MyStack

@@ -22,6 +22,21 @@ const styles = StyleSheet.create({
 
     body: {
         backgroundColor: 'white',
+        display: 'flex',
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    checkoutform:{
+        width: '50%',
+        display: 'flex',
+        alignContent: 'center',
+        justifyContent: 'center',
+    },
+
+    CheckBox:{
+        marginLeft: '5%',
     },
 
     searchbarcontainer:{
@@ -34,21 +49,20 @@ const styles = StyleSheet.create({
     },
     searchbarinput: {
         color: 'grey',
+        fontFamily: 'Arial',
     },
 
     mainview: {
-        backgroundColor: 'white',
-        marginLeft: normalize(30),
-        marginRight: normalize(30),
+        display: 'flex',
+        width: '70%',
+        alignContent: 'center',
     },
 
     checkouttable: {
         backgroundColor: 'white',
-        maxWidth: normalize(50),
-        marginLeft: normalize(30),
-        marginRight: normalize(30),
+        maxHeight: normalize(50),
+        width: '70%',
     },
-
 
     header: {
         display: 'flex',
@@ -58,11 +72,14 @@ const styles = StyleSheet.create({
         marginLeft: normalize(30),
         marginRight: normalize(30),
     },
+
     title: {
         fontSize: normalize(10),
+        fontFamily: 'Arial',
     },
     samplesbutton:{
         backgroundColor: '#868686',
+        width: '20%',
     },
     checkoutbutton:{
         backgroundColor: '#B8B8B8',
@@ -74,8 +91,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         backgroundColor: '#F4F5FC',
-        marginLeft: normalize(30),
-        marginRight: normalize(30),
+        width: '70%'
     },
     navbuttons:{
         minHeight: normalize(8),
@@ -97,7 +113,6 @@ const styles = StyleSheet.create({
     },
     table: {
         borderColor: 'black',
-
     },
     thead:{
         display: 'flex',
@@ -107,52 +122,72 @@ const styles = StyleSheet.create({
         minHeight: normalize(8),
         alignItems: 'center',
     },
+    theadsampleidcheckout: {
+        color: '#777777',
+        fontWeight: 'bold',
+        fontFamily: 'Arial',
+        marginLeft: '16.8%',
+    },
+
     theadsampleid: {
         color: '#777777',
         fontWeight: 'bold',
-        //marginLeft: normalize(28),
+        fontFamily: 'Arial',
+        marginLeft: '11%',
     },
     theadname: {
         color: '#9295AB',
         fontWeight: 'bold',
-        paddingLeft: normalize(20),
+        marginLeft: '13%',
+        fontFamily: 'Arial',
     },
     theadtype: {
         color: '#777777',
         fontWeight: 'bold',
-        //marginLeft: normalize(147),
+        marginLeft: '25%',
+        fontFamily: 'Arial',
     },
     theadprice: {
         color: '#777777',
         fontWeight: 'bold',
-        marginLeft: normalize(187),
+        marginLeft: '11.5%',
+        fontFamily: 'Arial',
     },
     theadstock: {
         color: '#777777',
         fontWeight: 'bold',
-        marginLeft: normalize(226),
+        marginLeft: '11.5%',
+        fontFamily: 'Arial',
     },
     cellsampleid: {
-        //fontWeight: 'bold',
-        marginLeft: normalize(10),
-        minWidth: normalize(5),
+        fontWeight: 'bold',
+        marginLeft: '12%',
+        fontFamily: 'Arial',
+        width: normalize(10),
     },
     cellname: {
         fontWeight: 'bold',
-        marginLeft: normalize(40),
-        minWidth: normalize(40),
+        marginLeft: '12%',
+        fontFamily: 'Arial',
+        width: normalize(40),
     },
     celltype: {
         fontWeight: 'bold',
-        marginLeft: normalize(40),
+        marginLeft: '10%',
+        fontFamily: 'Arial',
+        width: normalize(10),
     },
     cellprice: {
         fontWeight: 'bold',
-        marginLeft: normalize(40),
+        marginLeft: '10%',
+        fontFamily: 'Arial',
+        width: normalize(10),
     },
     cellstock: {
         fontWeight: 'bold',
-        marginLeft: normalize(40),
+        marginLeft: '10%',
+        fontFamily: 'Arial',
+        width: normalize(10),
     },
     rowstripe:{
         display: 'flex',
