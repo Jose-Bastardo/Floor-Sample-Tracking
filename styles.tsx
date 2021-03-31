@@ -33,6 +33,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignContent: 'center',
         justifyContent: 'center',
+        marginLeft: '20%',
+        marginTop: '5%',
     },
 
     CheckBox:{
@@ -54,14 +56,14 @@ const styles = StyleSheet.create({
 
     mainview: {
         display: 'flex',
-        width: '70%',
+        width: '90%',
         alignContent: 'center',
     },
 
     checkouttable: {
         backgroundColor: 'white',
         maxHeight: normalize(50),
-        width: '70%',
+        width: '90%',
     },
 
     header: {
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         backgroundColor: '#F4F5FC',
-        width: '70%'
+        width: '90%'
     },
     navbuttons:{
         minHeight: normalize(8),
@@ -122,6 +124,11 @@ const styles = StyleSheet.create({
         minHeight: normalize(8),
         alignItems: 'center',
     },
+    headertext:{
+        fontWeight: 'bold',
+        fontFamily: 'Arial',
+        color: '#808080',
+    },
     theadsampleidcheckout: {
         color: '#777777',
         fontWeight: 'bold',
@@ -133,66 +140,115 @@ const styles = StyleSheet.create({
         color: '#777777',
         fontWeight: 'bold',
         fontFamily: 'Arial',
-        marginLeft: '11%',
+        position: 'absolute',
+        marginLeft: '2%'
     },
     theadname: {
         color: '#9295AB',
         fontWeight: 'bold',
-        marginLeft: '13%',
+        position: 'absolute',
+        marginLeft: '11%',
         fontFamily: 'Arial',
     },
     theadtype: {
         color: '#777777',
         fontWeight: 'bold',
-        marginLeft: '25%',
+        position: 'absolute',
+        marginLeft: '31%',
         fontFamily: 'Arial',
     },
-    theadprice: {
+    theadstatus: {
         color: '#777777',
         fontWeight: 'bold',
-        marginLeft: '11.5%',
+        position: 'absolute',
+        marginLeft: '43%',
         fontFamily: 'Arial',
     },
-    theadstock: {
+    theadborrow_date: {
         color: '#777777',
         fontWeight: 'bold',
-        marginLeft: '11.5%',
+        position: 'absolute',
+        marginLeft: '54.5%',
+        fontFamily: 'Arial',
+    },
+    theaddue_date: {
+        color: '#777777',
+        fontWeight: 'bold',
+        position: 'absolute',
+        marginLeft: '62.5%',
+        fontFamily: 'Arial',
+    },
+    theadfirstname: {
+        color: '#777777',
+        fontWeight: 'bold',
+        position: 'absolute',
+        marginLeft: '70%',
+        fontFamily: 'Arial',
+    },
+    theadlastname: {
+        color: '#777777',
+        fontWeight: 'bold',
+        position: 'absolute',
+        marginLeft: '80.5%',
         fontFamily: 'Arial',
     },
     cellsampleid: {
         fontWeight: 'bold',
-        marginLeft: '12%',
         fontFamily: 'Arial',
-        width: normalize(10),
+        width: normalize(40),
+        position: 'absolute',
+        marginLeft: '3%',
     },
     cellname: {
         fontWeight: 'bold',
-        marginLeft: '12%',
         fontFamily: 'Arial',
-        width: normalize(40),
+        width: normalize(80),
+        position: 'absolute',
+        marginLeft: normalize(30)
     },
     celltype: {
         fontWeight: 'bold',
-        marginLeft: '10%',
+        paddingLeft: '3%',
         fontFamily: 'Arial',
-        width: normalize(10),
+        width: normalize(20),
+        position: 'absolute',
+        marginLeft: '28%'
     },
-    cellprice: {
+    cellborrow_date: {
         fontWeight: 'bold',
-        marginLeft: '10%',
+        paddingLeft: '10%',
         fontFamily: 'Arial',
-        width: normalize(10),
+        width: normalize(50),
+        position: 'absolute',
+        marginLeft: '45%'
     },
-    cellstock: {
+    celldue_date: {
         fontWeight: 'bold',
-        marginLeft: '10%',
+        paddingLeft: '10%',
         fontFamily: 'Arial',
-        width: normalize(10),
+        width: normalize(50),
+        position: 'absolute',
+        marginLeft: '53%'
+    },
+    cellfirstname: {
+        fontWeight: 'bold',
+        paddingLeft: '10%',
+        fontFamily: 'Arial',
+        width: normalize(50),
+        position: 'absolute',
+        marginLeft: '61%'
+    },
+    celllastname: {
+        fontWeight: 'bold',
+        paddingLeft: '10%',
+        fontFamily: 'Arial',
+        width: normalize(50),
+        position: 'absolute',
+        marginLeft: '71%'
     },
     rowstripe:{
         display: 'flex',
         flexDirection: 'row',
-        flex: 1,
         backgroundColor: '#FAFAFC',
         minHeight: normalize(10),
         alignItems: 'center',
@@ -200,10 +256,81 @@ const styles = StyleSheet.create({
     rownostripe:{
         display: 'flex',
         flexDirection: 'row',
-        flex: 1,
         backgroundColor: '#FFFFFF',
         minHeight: normalize(10),
         alignItems: 'center',
+    },
+    overdue:{
+        display: 'flex',
+        fontWeight: 'bold',
+        fontFamily: 'Arial',
+        width: normalize(20),
+        height: normalize(5),
+        backgroundColor: 'indianred',
+        borderRadius: 10,
+        color: 'maroon',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        marginLeft: '41%'
+    },
+    good_standing:{
+        display: 'flex',
+        fontWeight: 'bold',
+        fontFamily: 'Arial',
+        width: normalize(25),
+        height: normalize(5),
+        backgroundColor: 'lightgreen',
+        borderRadius: 10,
+        color: 'darkgreen',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        marginLeft: '40%'
+    },
+    chargebutton:{
+        position: 'absolute',
+        marginLeft: '93%'
+    },
+    loginmain:{
+      width: '70%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        backgroundColor: 'white',
+        marginTop: '3%',
+        height: normalize(140),
+    },
+    loginarticle:{
+        width: '50%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: '3%',
+        backgroundImage: 'linear-gradient(darkgrey, grey , purple)',
+        display: 'flex',
+        alignItems: 'center',
+        height: '90%',
+    },
+    logintitle:{
+        fontSize: normalize(10),
+        textAlign: 'center',
+        marginTop: '10%'
+    },
+    logintext:{
+        fontSize: normalize(6),
+        textAlign: 'center',
+        marginTop: '10%',
+    },
+    loginuserinput:{
+        marginTop: '5%',
+        fontSize: normalize(6),
+        backgroundColor: '#660066',
+    },
+    loginpasswordinput:{
+        marginTop: '5%',
+        fontSize: normalize(6),
+    },
+    loginsubmit:{
+        marginTop: '5%',
     },
 });
 

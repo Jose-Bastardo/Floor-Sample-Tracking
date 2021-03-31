@@ -24,6 +24,10 @@ const MyStack = () => {
                 headerShown: false
             }}>
                 <Stack.Screen
+                    name="Log In"
+                    component={login}
+                />
+                <Stack.Screen
                     name="Home"
                     component={Home}
                 />
@@ -37,11 +41,54 @@ const MyStack = () => {
 };
 
 const data = [
-        {sampleid: "1", Name: "Old Blue Seas Vynyl Plank", Type: "Vinyl", Price: "$2.99", Stock: "50"},
-        {sampleid:"2", Name:"Ridgeway Oak Vinyl Plank", Type:"Vinyl", Price:"$2.99", Stock:"100"},
-        {sampleid:"3", Name:"Akoya Vinyl Plank", Type:"Vinyl", Price:"$2.99", Stock:"150"},
+        ["21","Old Blue Seas Vynyl Plank", "Vinyl", "3/30/2021", "4/4/2021", "John", "Smith"],
+        ["23","Ridgeway Oak Vinyl Plank", "Vinyl", "3/25/2021", "3/30/2021", "Bobby", "Brown"],
+        ["45", "Akoya Vinyl Plank", "Vinyl", "3/26/2021", "4/5/2021","Edgar", "Allen Poe"],
+        ["32", "Oak Wood Plank", "Wood", "3/20/2021", "3/25/2021","Edward", "Cunningham"],
     ]
 
+export class login extends React.Component{
+    state = {
+        usernameinput:"",
+        passwordinput:"",
+    }
+
+    render(){
+        const { usernameinput, passwordinput } = this.state;
+
+        // @ts-ignore
+        const navigation = this.props.navigation;
+
+        const loginsubmit = () => {
+            var username = "admin"
+            var password = "password"
+
+            console.log("Function working")
+            if(this.state.usernameinput == username && this.state.passwordinput == password){
+                console.log("Check Passed")
+                navigation.navigate('Home')
+            }
+        }
+
+        return(
+            <View>
+                <View style={styles.loginmain}>
+                    <View style={styles.loginarticle}>
+                        <Text style={styles.logintitle}>Floor Sample Tracking</Text>
+                        <Text style={styles.logintext}>Log-in to your account</Text>
+                        <TextInput style={styles.loginuserinput} placeholder={"Username"} value={usernameinput}
+                                   onChangeText={(usernameinput) => this.setState({usernameinput})}/>
+                        <TextInput style={styles.loginpasswordinput} value={passwordinput} onChangeText={(passwordinput) => this.setState({passwordinput})}
+                                   placeholder={"Password"} secureTextEntry={true}/>
+                        <View style={styles.loginsubmit}>
+                            <Button color='#221ECC' title="Submit" onPress={() => loginsubmit()}/>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        );
+    };
+};
 export class Home extends React.Component{
     //Render Table
     state = {
@@ -63,9 +110,9 @@ export class Home extends React.Component{
         this.data = [];
         // update tableview data
         for(var i = 0; i < this.state.tableData.length; i++) {
-            if(search === '' || this.state.tableData[i]["sampleid"].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i]["Name"].toLowerCase().includes(search.toLowerCase()) ||
-                this.state.tableData[i]["Type"].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i]["Price"].toLowerCase().includes(search.toLowerCase()) ||
-                this.state.tableData[i]["Stock"].toLowerCase().includes(search.toLowerCase())){
+            if(search === '' || this.state.tableData[i][0].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i][1].toLowerCase().includes(search.toLowerCase()) ||
+                this.state.tableData[i][2].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i][5].toLowerCase().includes(search.toLowerCase()) ||
+                this.state.tableData[i][6].toLowerCase().includes(search.toLowerCase())){
                 this.data.push(this.state.tableData[i])
             }
         }
@@ -76,14 +123,12 @@ export class Home extends React.Component{
 
         this.NameSort = 0
         this.TypeSort = 0
-        this.PriceSort = 0
-        this.StockSort = 0
 
         if(this.SampleIDSort === 0) {
             this.SampleIDSort = 1;
             this.state.tableData.sort(function(a, b){
-                var x = a.sampleid.toLowerCase();
-                var y = b.sampleid.toLowerCase();
+                var x = a[0].toLowerCase();
+                var y = b[0].toLowerCase();
                 if (x < y) {return -1;}
                 if (x > y) {return 1;}
                 return 0;
@@ -93,8 +138,8 @@ export class Home extends React.Component{
         else if(this.SampleIDSort === 1){
             this.SampleIDSort = 2;
             this.state.tableData.sort(function(a, b){
-                var x = a.sampleid.toLowerCase();
-                var y = b.sampleid.toLowerCase();
+                var x = a[0].toLowerCase();
+                var y = b[0].toLowerCase();
                 if (x < y) {return 1;}
                 if (x > y) {return -1;}
                 return 0;
@@ -104,8 +149,8 @@ export class Home extends React.Component{
         else if(this.SampleIDSort === 2){
             this.SampleIDSort = 1;
             this.state.tableData.sort(function(a, b){
-                var x = a.sampleid.toLowerCase();
-                var y = b.sampleid.toLowerCase();
+                var x = a[0].toLowerCase();
+                var y = b[0].toLowerCase();
                 if (x < y) {return -1;}
                 if (x > y) {return 1;}
                 return 0;
@@ -124,8 +169,8 @@ export class Home extends React.Component{
         if(this.NameSort === 0) {
             this.NameSort = 1;
             this.state.tableData.sort(function(a, b){
-                var x = a.Name.toLowerCase();
-                var y = b.Name.toLowerCase();
+                var x = a[1].toLowerCase();
+                var y = b[1].toLowerCase();
                 if (x < y) {return -1;}
                 if (x > y) {return 1;}
                 return 0;
@@ -135,8 +180,8 @@ export class Home extends React.Component{
         else if(this.NameSort === 1){
             this.NameSort = 2;
             this.state.tableData.sort(function(a, b){
-                var x = a.Name.toLowerCase();
-                var y = b.Name.toLowerCase();
+                var x = a[1].toLowerCase();
+                var y = b[1].toLowerCase();
                 if (x < y) {return 1;}
                 if (x > y) {return -1;}
                 return 0;
@@ -146,8 +191,8 @@ export class Home extends React.Component{
         else if(this.NameSort === 2){
             this.NameSort = 1;
             this.state.tableData.sort(function(a, b){
-                var x = a.Name.toLowerCase();
-                var y = b.Name.toLowerCase();
+                var x = a[1].toLowerCase();
+                var y = b[1].toLowerCase();
                 if (x < y) {return -1;}
                 if (x > y) {return 1;}
                 return 0;
@@ -166,8 +211,8 @@ export class Home extends React.Component{
         if(this.TypeSort === 0) {
             this.TypeSort = 1;
             this.state.tableData.sort(function(a, b){
-                var x = a.Type.toLowerCase();
-                var y = b.Type.toLowerCase();
+                var x = a[2].toLowerCase();
+                var y = b[2].toLowerCase();
                 if (x < y) {return -1;}
                 if (x > y) {return 1;}
                 return 0;
@@ -177,8 +222,8 @@ export class Home extends React.Component{
         else if(this.TypeSort === 1){
             this.TypeSort = 2;
             this.state.tableData.sort(function(a, b){
-                var x = a.Type.toLowerCase();
-                var y = b.Type.toLowerCase();
+                var x = a[2].toLowerCase();
+                var y = b[2].toLowerCase();
                 if (x < y) {return 1;}
                 if (x > y) {return -1;}
                 return 0;
@@ -188,8 +233,8 @@ export class Home extends React.Component{
         else if(this.TypeSort === 2){
             this.TypeSort = 1;
             this.state.tableData.sort(function(a, b){
-                var x = a.Type.toLowerCase();
-                var y = b.Type.toLowerCase();
+                var x = a[2].toLowerCase();
+                var y = b[2].toLowerCase();
                 if (x < y) {return -1;}
                 if (x > y) {return 1;}
                 return 0;
@@ -197,91 +242,6 @@ export class Home extends React.Component{
             this.updateSearch(this.state.search);
         }
     }
-
-    updatePriceSort = () => {
-
-        this.SampleIDSort = 0
-        this.NameSort = 0
-        this.TypeSort = 0
-        this.StockSort = 0
-
-        if(this.PriceSort === 0) {
-            this.PriceSort = 1;
-            this.state.tableData.sort(function(a, b){
-                var x = a.Price.toLowerCase();
-                var y = b.Price.toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-        else if(this.PriceSort === 1){
-            this.PriceSort = 2;
-            this.state.tableData.sort(function(a, b){
-                var x = a.Price.toLowerCase();
-                var y = b.Price.toLowerCase();
-                if (x < y) {return 1;}
-                if (x > y) {return -1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-        else if(this.PriceSort === 2){
-            this.PriceSort = 1;
-            this.state.tableData.sort(function(a, b){
-                var x = a.Price.toLowerCase();
-                var y = b.Price.toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-    }
-
-    updateStockSort = () => {
-
-        this.SampleIDSort = 0
-        this.NameSort = 0
-        this.TypeSort = 0
-        this.PriceSort = 0
-
-        if(this.StockSort === 0) {
-            this.StockSort = 1;
-            this.state.tableData.sort(function(a, b){
-                var x = a.Stock.toLowerCase();
-                var y = b.Stock.toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-        else if(this.StockSort === 1){
-            this.StockSort = 2;
-            this.state.tableData.sort(function(a, b){
-                var x = a.Stock.toLowerCase();
-                var y = b.Stock.toLowerCase();
-                if (x < y) {return 1;}
-                if (x > y) {return -1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-        else if(this.StockSort === 2){
-            this.StockSort = 1;
-            this.state.tableData.sort(function(a, b){
-                var x = a.Stock.toLowerCase();
-                var y = b.Stock.toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-    }
-
 
     render() {
         const { search } = this.state;
@@ -293,21 +253,51 @@ export class Home extends React.Component{
 
         var rowstyle;
 
+        var curdate = new Date()
+        curdate.setHours(0,0,0,0)
+
         for (var i = 0; i < this.data.length; i++) {
             if (i % 2 == 0) {
                 rowstyle = styles.rownostripe
             } else {
                 rowstyle = styles.rowstripe;
             }
-            table.push(
-                <View key={this.data[i]["sampleid"]} style={rowstyle}>
-                    <Text style={styles.cellsampleid}>{this.data[i]["sampleid"]}</Text>
-                    <Text style={styles.cellname}>{this.data[i]["Name"]}</Text>
-                    <Text style={styles.celltype}>{this.data[i]["Type"]}</Text>
-                    <Text style={styles.cellprice}>{this.data[i]["Price"]}</Text>
-                    <Text style={styles.cellstock}>{this.data[i]["Stock"]}</Text>
-                </View>
-            )
+            var duedate = new Date(this.data[i][4])
+
+            if(curdate > duedate) {
+                table.push(
+                    <View key={this.data[i][0]} style={rowstyle}>
+                        <Text style={styles.cellsampleid}>{this.data[i][0]}</Text>
+                        <Text style={styles.cellname}>{this.data[i][1]}</Text>
+                        <Text style={styles.celltype}>{this.data[i][2]}</Text>
+                        <Text style={styles.overdue}>OVERDUE</Text>
+                        <Text style={styles.cellborrow_date}>{this.data[i][3]}</Text>
+                        <Text style={styles.celldue_date}>{this.data[i][4]}</Text>
+                        <Text style={styles.cellfirstname}>{this.data[i][5]}</Text>
+                        <Text style={styles.celllastname}>{this.data[i][6]}</Text>
+                        <View style={styles.chargebutton}>
+                            <Button color='#221ECC' title="charge"/>
+                        </View>
+                    </View>
+                )
+            }
+            else{
+                table.push(
+                    <View key={this.data[i][0]} style={rowstyle}>
+                        <Text style={styles.cellsampleid}>{this.data[i][0]}</Text>
+                        <Text style={styles.cellname}>{this.data[i][1]}</Text>
+                        <Text style={styles.celltype}>{this.data[i][2]}</Text>
+                        <Text style={styles.good_standing}>GOOD STANDING</Text>
+                        <Text style={styles.cellborrow_date}>{this.data[i][3]}</Text>
+                        <Text style={styles.celldue_date}>{this.data[i][4]}</Text>
+                        <Text style={styles.cellfirstname}>{this.data[i][5]}</Text>
+                        <Text style={styles.celllastname}>{this.data[i][6]}</Text>
+                        <View style={styles.chargebutton}>
+                            <Button color='#221ECC' title="charge"/>
+                        </View>
+                    </View>
+                )
+            }
         }
 
         //-----------------------------------------------------------------------------------------------
@@ -324,6 +314,9 @@ export class Home extends React.Component{
                         }/>
                         <Button color='#221ECC' title="Checkout" onPress={() =>
                             navigation.navigate('Checkout')
+                        }/>
+                        <Button color='#221ECC' title="Log Out" onPress={() =>
+                            navigation.navigate('Log In')
                         }/>
                     </View>
                 </View>
@@ -345,28 +338,43 @@ export class Home extends React.Component{
                     <View style={styles.table}>
                         <View style={styles.thead}>
                             <View style={styles.theadsampleid}>
-                                <TouchableOpacity   onPress={this.updateSampleIDsort}>
-                                    <Text>Sample ID</Text>
+                                <TouchableOpacity onPress={this.updateSampleIDsort}>
+                                    <Text style={styles.headertext}>Sample ID</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.theadname}>
                                 <TouchableOpacity  onPress={this.updateNameSort}>
-                                    <Text>Name</Text>
+                                    <Text style={styles.headertext}>Name</Text>
                                 </TouchableOpacity>
                             </View>
-                            <View style={styles.theadtype} >
+                            <View style={styles.theadtype}>
                                 <TouchableOpacity onPress={this.updateTypeSort}>
-                                    <Text>Type</Text>
+                                    <Text style={styles.headertext}>Type</Text>
                                 </TouchableOpacity>
                             </View>
-                            <View style={styles.theadprice}>
-                                <TouchableOpacity  onPress={this.updatePriceSort}>
-                                    <Text>Price</Text>
+                            <View style={styles.theadstatus}>
+                                <TouchableOpacity onPress={this.updatePriceSort}>
+                                    <Text style={styles.headertext}>Status</Text>
                                 </TouchableOpacity>
                             </View>
-                            <View style={styles.theadstock}>
-                                <TouchableOpacity  onPress={this.updateStockSort}>
-                                    <Text>Stock</Text>
+                            <View style={styles.theadborrow_date}>
+                                <TouchableOpacity onPress={this.updateStockSort}>
+                                    <Text style={styles.headertext}>Borrow Date</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.theaddue_date}>
+                                <TouchableOpacity onPress={this.updateStockSort}>
+                                    <Text style={styles.headertext}>Due Date</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.theadfirstname}>
+                                <TouchableOpacity onPress={this.updateStockSort}>
+                                    <Text style={styles.headertext}>First Name</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.theadlastname}>
+                                <TouchableOpacity onPress={this.updateStockSort}>
+                                    <Text style={styles.headertext}>Last Name</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -381,7 +389,7 @@ export class Home extends React.Component{
 //---------------------------------------------------------------------------------------------------------------------------------
 // @ts-ignore
 class Checkout extends React.Component{
-
+/*
     state = {
         search:"",
         tableData: data,
@@ -634,10 +642,10 @@ class Checkout extends React.Component{
         const item = e.target.name;
         const isChecked = e.target.checked;
         this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
-    }
+    }*/
 
     render() {
-        const { search } = this.state;
+        /*const { search } = this.state;
 
 
 
@@ -656,12 +664,13 @@ class Checkout extends React.Component{
             }
             table.push(
                 <View key={this.data[i]["sampleid"]} style={rowstyle}>
-                    checkboxes.map(item => (
+                    {/*checkboxes.map(item => (
                     <label key={item.key}>
                         {item.name}
                         <Checkbox name={item.name} checked={this.state.checkedItems.get(item.name)} onChange={this.handleChange} />
                     </label>
-                    ))
+                    ))}
+                    <CheckBox style={styles.CheckBox}/>
                     <Text style={styles.cellsampleid}>{this.data[i]["sampleid"]}</Text>
                     <Text style={styles.cellname}>{this.data[i]["Name"]}</Text>
                     <Text style={styles.celltype}>{this.data[i]["Type"]}</Text>
@@ -669,7 +678,7 @@ class Checkout extends React.Component{
                     <Text style={styles.cellstock}>{this.data[i]["Stock"]}</Text>
                 </View>
             )
-        }
+        }*/
 
 
 
@@ -715,11 +724,20 @@ class Checkout extends React.Component{
                             <TouchableOpacity style={styles.theadtype} onPress={this.updateTypeSort}>
                                 <Text>Type</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.theadprice} onPress={this.updatePriceSort}>
-                                <Text>Price</Text>
+                            <TouchableOpacity style={styles.theadstatus} onPress={this.updatePriceSort}>
+                                <Text>Status</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.theadstock} onPress={this.updateStockSort}>
-                                <Text>Stock</Text>
+                            <TouchableOpacity style={styles.theadborrow_date} onPress={this.updateStockSort}>
+                                <Text>Borrow Date</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.theaddue_date} onPress={this.updateStockSort}>
+                                <Text>Due Date</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.theadfirstname} onPress={this.updateStockSort}>
+                                <Text>First Name</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.theadlastname} onPress={this.updateStockSort}>
+                                <Text>Last Name</Text>
                             </TouchableOpacity>
                         </View>
                         {table}
