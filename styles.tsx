@@ -293,16 +293,16 @@ const styles = StyleSheet.create({
         marginLeft: '93%'
     },
     loginmain:{
-      width: '65%',
+      width: '55%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        backgroundColor: '#660066',
+        backgroundColor: '#1d1bb1',
         marginTop: '3%',
         height: normalize(140),
         borderRadius: normalize(10),
     },
     loginarticle:{
-        width: '50%',
+        width: '65%',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: '3%',
@@ -351,8 +351,44 @@ const styles = StyleSheet.create({
     },
     ortext:{
       marginTop: '4%',
-        fontSize: normalize(3),
+        fontSize: normalize(4),
         color: '#777777'
+    },
+    registrationtext:{
+        fontSize: normalize(6),
+        textAlign: 'center',
+        marginTop: '8%',
+        fontWeight: 'bold',
+        color: '#777777',
+    },
+    regfirstnamecontainer:{
+        marginTop: '7%',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
+    reglastnamecontainer:{
+        marginTop: '3%',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
+    regcompanycontainer:{
+        marginTop: '3%',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
+    regemailcontainer:{
+        marginTop: '3%',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
+    regpasswordcontainer:{
+        marginTop: '3%',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
+    registersubmit:{
+        marginTop: '6%',
+        width: '55%',
     },
 });
 
