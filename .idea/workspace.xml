@@ -13,7 +13,6 @@
     <list default="true" id="e4c2322e-7899-4168-b557-eae62a863872" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/styles.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +87,8 @@
       <workItem from="1616035488229" duration="7911000" />
       <workItem from="1616072553652" duration="1058000" />
       <workItem from="1617199133175" duration="2985000" />
-      <workItem from="1617211707227" duration="26786000" />
+      <workItem from="1617211707227" duration="27651000" />
+      <workItem from="1617278537499" duration="4419000" />
     </task>
     <servers />
   </component>

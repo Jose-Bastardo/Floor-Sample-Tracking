@@ -173,11 +173,13 @@ export class Home extends React.Component{
 
     data = this.state.tableData;
 
-    SampleIDSort = 1
+    orderIDSort = 1
     NameSort = 0
     TypeSort = 0
-    PriceSort = 0
-    StockSort = 0
+    borrowdateSort = 0
+    duedateSort = 0
+    firstnameSort = 0
+    lastnameSort = 0
 
     // @ts-ignore
     updateSearch = search => {
@@ -185,136 +187,366 @@ export class Home extends React.Component{
         this.data = [];
         // update tableview data
         for(var i = 0; i < this.state.tableData.length; i++) {
+            var name = this.state.tableData[i][5] + " " + this.state.tableData[i][6]
             if(search === '' || this.state.tableData[i][0].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i][1].toLowerCase().includes(search.toLowerCase()) ||
-                this.state.tableData[i][2].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i][5].toLowerCase().includes(search.toLowerCase()) ||
-                this.state.tableData[i][6].toLowerCase().includes(search.toLowerCase())){
+                this.state.tableData[i][2].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i][3].toLowerCase().includes(search.toLowerCase()) ||
+                this.state.tableData[i][5].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i][5].toLowerCase().includes(search.toLowerCase()) ||
+                this.state.tableData[i][6].toLowerCase().includes(search.toLowerCase()) || name.toLowerCase().includes(search.toLowerCase())){
                 this.data.push(this.state.tableData[i])
-            }
+            };
         }
     }
 
     //Sort by Sample ID
-    updateSampleIDsort = () => {
+    Sort = (sorttype: number) => {
 
-        this.NameSort = 0
-        this.TypeSort = 0
+        switch (sorttype) {
+            case 0:
+                this.NameSort = 0
+                this.TypeSort = 0
+                this.borrowdateSort = 0
+                this.duedateSort = 0
+                this.firstnameSort = 0
+                this.lastnameSort = 0
 
-        if(this.SampleIDSort === 0) {
-            this.SampleIDSort = 1;
-            this.state.tableData.sort(function(a, b){
-                var x = a[0].toLowerCase();
-                var y = b[0].toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-        else if(this.SampleIDSort === 1){
-            this.SampleIDSort = 2;
-            this.state.tableData.sort(function(a, b){
-                var x = a[0].toLowerCase();
-                var y = b[0].toLowerCase();
-                if (x < y) {return 1;}
-                if (x > y) {return -1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-        else if(this.SampleIDSort === 2){
-            this.SampleIDSort = 1;
-            this.state.tableData.sort(function(a, b){
-                var x = a[0].toLowerCase();
-                var y = b[0].toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-    }
+                if (this.orderIDSort === 0) {
+                    this.orderIDSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[0].toLowerCase();
+                        var y = b[0].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                } else if (this.orderIDSort === 1) {
+                    this.orderIDSort = 2;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[0].toLowerCase();
+                        var y = b[0].toLowerCase();
+                        if (x < y) {
+                            return 1;
+                        }
+                        if (x > y) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                } else if (this.orderIDSort === 2) {
+                    this.orderIDSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[0].toLowerCase();
+                        var y = b[0].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                }
+                this.updateSearch(this.state.search);
+                break;
+            case 1:
+                this.orderIDSort = 0
+                this.TypeSort = 0
+                this.borrowdateSort = 0
+                this.duedateSort = 0
+                this.firstnameSort = 0
+                this.lastnameSort = 0
 
-    updateNameSort = () => {
-
-        this.SampleIDSort = 0
-        this.TypeSort = 0
-        this.PriceSort = 0
-        this.StockSort = 0
-
-        if(this.NameSort === 0) {
-            this.NameSort = 1;
-            this.state.tableData.sort(function(a, b){
-                var x = a[1].toLowerCase();
-                var y = b[1].toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-        else if(this.NameSort === 1){
-            this.NameSort = 2;
-            this.state.tableData.sort(function(a, b){
-                var x = a[1].toLowerCase();
-                var y = b[1].toLowerCase();
-                if (x < y) {return 1;}
-                if (x > y) {return -1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-        else if(this.NameSort === 2){
-            this.NameSort = 1;
-            this.state.tableData.sort(function(a, b){
-                var x = a[1].toLowerCase();
-                var y = b[1].toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-    }
-
-    updateTypeSort = () => {
-
-        this.SampleIDSort = 0
-        this.NameSort = 0
-        this.PriceSort = 0
-        this.StockSort = 0
-
-        if(this.TypeSort === 0) {
-            this.TypeSort = 1;
-            this.state.tableData.sort(function(a, b){
-                var x = a[2].toLowerCase();
-                var y = b[2].toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-        else if(this.TypeSort === 1){
-            this.TypeSort = 2;
-            this.state.tableData.sort(function(a, b){
-                var x = a[2].toLowerCase();
-                var y = b[2].toLowerCase();
-                if (x < y) {return 1;}
-                if (x > y) {return -1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
-        }
-        else if(this.TypeSort === 2){
-            this.TypeSort = 1;
-            this.state.tableData.sort(function(a, b){
-                var x = a[2].toLowerCase();
-                var y = b[2].toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            });
-            this.updateSearch(this.state.search);
+                if (this.NameSort === 0) {
+                    this.NameSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[1].toLowerCase();
+                        var y = b[1].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                } else if (this.NameSort === 1) {
+                    this.NameSort = 2;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[1].toLowerCase();
+                        var y = b[1].toLowerCase();
+                        if (x < y) {
+                            return 1;
+                        }
+                        if (x > y) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                    ;
+                } else if (this.NameSort === 2) {
+                    this.NameSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[1].toLowerCase();
+                        var y = b[1].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                }
+                this.updateSearch(this.state.search);
+                break;
+            case 2:
+                this.orderIDSort = 0
+                this.NameSort = 0
+                this.borrowdateSort = 0
+                this.duedateSort = 0
+                this.firstnameSort = 0
+                this.lastnameSort = 0
+                if (this.TypeSort === 0) {
+                    this.TypeSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[2].toLowerCase();
+                        var y = b[2].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                } else if (this.TypeSort === 1) {
+                    this.TypeSort = 2;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[2].toLowerCase();
+                        var y = b[2].toLowerCase();
+                        if (x < y) {
+                            return 1;
+                        }
+                        if (x > y) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                } else if (this.TypeSort === 2) {
+                    this.TypeSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[2].toLowerCase();
+                        var y = b[2].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                }
+                this.updateSearch(this.state.search);
+                break;
+            case 3:
+                this.orderIDSort = 0
+                this.NameSort = 0
+                this.TypeSort = 0
+                this.duedateSort = 0
+                this.firstnameSort = 0
+                this.lastnameSort = 0
+                if (this.borrowdateSort === 0) {
+                    this.borrowdateSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[3].toLowerCase();
+                        var y = b[3].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                } else if (this.borrowdateSort === 1) {
+                    this.borrowdateSort = 2;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[3].toLowerCase();
+                        var y = b[3].toLowerCase();
+                        if (x < y) {
+                            return 1;
+                        }
+                        if (x > y) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                } else if (this.borrowdateSort === 2) {
+                    this.borrowdateSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[3].toLowerCase();
+                        var y = b[3].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                }
+                this.updateSearch(this.state.search);
+                break;
+            case 4:
+                this.orderIDSort = 0
+                this.NameSort = 0
+                this.TypeSort = 0
+                this.borrowdateSort = 0
+                this.firstnameSort = 0
+                this.lastnameSort = 0
+                if (this.duedateSort === 0) {
+                    this.duedateSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[4].toLowerCase();
+                        var y = b[4].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                } else if (this.duedateSort === 1) {
+                    this.duedateSort = 2;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[4].toLowerCase();
+                        var y = b[4].toLowerCase();
+                        if (x < y) {
+                            return 1;
+                        }
+                        if (x > y) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                } else if (this.duedateSort === 2) {
+                    this.duedateSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[4].toLowerCase();
+                        var y = b[4].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                }
+                this.updateSearch(this.state.search);
+                break;
+            case 5:
+                this.orderIDSort = 0
+                this.NameSort = 0
+                this.TypeSort = 0
+                this.borrowdateSort = 0
+                this.duedateSort = 0
+                this.lastnameSort = 0
+                if (this.firstnameSort === 0) {
+                    this.firstnameSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[5].toLowerCase();
+                        var y = b[5].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                } else if (this.firstnameSort === 1) {
+                    this.firstnameSort = 2;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[5].toLowerCase();
+                        var y = b[5].toLowerCase();
+                        if (x < y) {
+                            return 1;
+                        }
+                        if (x > y) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                } else if (this.firstnameSort === 2) {
+                    this.firstnameSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[5].toLowerCase();
+                        var y = b[5].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                }
+                this.updateSearch(this.state.search);
+                break;
+            case 6:
+                this.orderIDSort = 0
+                this.NameSort = 0
+                this.TypeSort = 0
+                this.borrowdateSort = 0
+                this.duedateSort = 0
+                this.firstnameSort = 0
+                if (this.lastnameSort === 0) {
+                    this.lastnameSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[6].toLowerCase();
+                        var y = b[6].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                } else if (this.lastnameSort === 1) {
+                    this.lastnameSort = 2;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[6].toLowerCase();
+                        var y = b[6].toLowerCase();
+                        if (x < y) {
+                            return 1;
+                        }
+                        if (x > y) {
+                            return -1;
+                        }
+                        return 0;
+                    });
+                } else if (this.lastnameSort === 2) {
+                    this.lastnameSort = 1;
+                    this.state.tableData.sort(function (a, b) {
+                        var x = a[6].toLowerCase();
+                        var y = b[6].toLowerCase();
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                }
+                this.updateSearch(this.state.search);
+                break;
         }
     }
 
@@ -413,42 +645,42 @@ export class Home extends React.Component{
                     <View style={styles.table}>
                         <View style={styles.thead}>
                             <View style={styles.theadsampleid}>
-                                <TouchableOpacity onPress={this.updateSampleIDsort}>
-                                    <Text style={styles.headertext}>Sample ID</Text>
+                                <TouchableOpacity onPress={() => this.Sort(0)}>
+                                    <Text style={styles.headertext}>Order ID</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.theadname}>
-                                <TouchableOpacity  onPress={this.updateNameSort}>
+                                <TouchableOpacity  onPress={() => this.Sort(1)}>
                                     <Text style={styles.headertext}>Name</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.theadtype}>
-                                <TouchableOpacity onPress={this.updateTypeSort}>
+                                <TouchableOpacity onPress={() => this.Sort(2)}>
                                     <Text style={styles.headertext}>Type</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.theadstatus}>
-                                <TouchableOpacity onPress={this.updatePriceSort}>
+                                <TouchableOpacity onPress={() => this.Sort(4)}>
                                     <Text style={styles.headertext}>Status</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.theadborrow_date}>
-                                <TouchableOpacity onPress={this.updateStockSort}>
+                                <TouchableOpacity onPress={() => this.Sort(3)}>
                                     <Text style={styles.headertext}>Borrow Date</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.theaddue_date}>
-                                <TouchableOpacity onPress={this.updateStockSort}>
+                                <TouchableOpacity onPress={() => this.Sort(4)}>
                                     <Text style={styles.headertext}>Due Date</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.theadfirstname}>
-                                <TouchableOpacity onPress={this.updateStockSort}>
+                                <TouchableOpacity onPress={() => this.Sort(5)}>
                                     <Text style={styles.headertext}>First Name</Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.theadlastname}>
-                                <TouchableOpacity onPress={this.updateStockSort}>
+                                <TouchableOpacity onPress={() => this.Sort(6)}>
                                     <Text style={styles.headertext}>Last Name</Text>
                                 </TouchableOpacity>
                             </View>
