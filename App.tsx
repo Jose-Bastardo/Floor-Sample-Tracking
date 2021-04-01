@@ -53,36 +53,41 @@ const data = [
 
 export class login extends React.Component{
     state = {
-        usernameinput:"",
+        emailinput:"",
         passwordinput:"",
+        notificationtext:"",
     }
 
     render(){
-        const { usernameinput, passwordinput } = this.state;
+        const { emailinput, passwordinput, notificationtext } = this.state;
 
         // @ts-ignore
         const navigation = this.props.navigation;
 
         const loginsubmit = () => {
-            var username = "admin"
+            var email = "admin@gmail.com"
             var password = "password"
 
-            console.log("Function working")
-            if(this.state.usernameinput == username && this.state.passwordinput == password){
-                console.log("Check Passed")
+            if(this.state.emailinput == email && this.state.passwordinput == password){
                 navigation.navigate('Home')
             }
+            else{
+                this.setState({notificationtext: "Incorrect email/password"})
+            }
         }
+
+
 
         return(
             <View>
                 <View style={styles.loginmain}>
                     <View style={styles.loginarticle}>
                         <Text style={styles.logintitle}>Floor Sample Tracking</Text>
+                        <Text style={styles.loginnotificationtext}>{this.state.notificationtext}</Text>
                         <Text style={styles.logintext}>Log-in to your account</Text>
-                        <View style={styles.userinputcontainer}>
-                            <TextInput style={styles.loginuserinput} placeholder={"Username"} value={usernameinput}
-                                       onChangeText={(usernameinput) => this.setState({usernameinput})}/>
+                        <View style={styles.emailinputcontainer}>
+                            <TextInput style={styles.loginemailinput} placeholder={"Email"} value={emailinput}
+                                       onChangeText={(emailinput) => this.setState({emailinput})}/>
                         </View>
                         <View style={styles.passwordinputcontainer}>
                             <TextInput style={styles.loginpasswordinput} value={passwordinput} onChangeText={(passwordinput) => this.setState({passwordinput})}
@@ -130,19 +135,19 @@ export class registration extends React.Component{
                         <Text style={styles.logintitle}>Floor Sample Tracking</Text>
                         <Text style={styles.registrationtext}>Registration</Text>
                         <View style={styles.regfirstnamecontainer}>
-                            <TextInput style={styles.loginuserinput} placeholder={"First Name"} value={firstnameinput}
+                            <TextInput style={styles.loginemailinput} placeholder={"First Name"} value={firstnameinput}
                                        onChangeText={(firstnameinput) => this.setState({firstnameinput})}/>
                         </View>
                         <View style={styles.reglastnamecontainer}>
-                            <TextInput style={styles.loginuserinput} placeholder={"Last Name"} value={lastnameinput}
+                            <TextInput style={styles.loginemailinput} placeholder={"Last Name"} value={lastnameinput}
                                        onChangeText={(lastnameinput) => this.setState({lastnameinput})}/>
                         </View>
                         <View style={styles.regcompanycontainer}>
-                            <TextInput style={styles.loginuserinput} placeholder={"Company"} value={companyinput}
+                            <TextInput style={styles.loginemailinput} placeholder={"Company"} value={companyinput}
                                        onChangeText={(companyinput) => this.setState({companyinput})}/>
                         </View>
                         <View style={styles.regemailcontainer}>
-                            <TextInput style={styles.loginuserinput} placeholder={"Email"} value={emailinput}
+                            <TextInput style={styles.loginemailinput} placeholder={"Email"} value={emailinput}
                                        onChangeText={(emailinput) => this.setState({emailinput})}/>
                         </View>
                         <View style={styles.regpasswordcontainer}>

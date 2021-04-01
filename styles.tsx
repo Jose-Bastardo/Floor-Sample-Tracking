@@ -321,11 +321,11 @@ const styles = StyleSheet.create({
     logintext:{
         fontSize: normalize(6),
         textAlign: 'center',
-        marginTop: '13%',
+        marginTop: '5%',
         fontWeight: 'bold',
         color: '#777777',
     },
-    loginuserinput:{
+    loginemailinput:{
         fontSize: normalize(6),
     },
     loginpasswordinput:{
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
         marginTop: '4%',
         width: '55%',
     },
-    userinputcontainer:{
+    emailinputcontainer:{
         marginTop: '7%',
         borderWidth: 1,
         borderColor: 'black',
@@ -389,6 +389,11 @@ const styles = StyleSheet.create({
     registersubmit:{
         marginTop: '6%',
         width: '55%',
+    },
+    loginnotificationtext:{
+        marginTop: '5%',
+        fontSize: normalize(6),
+        backgroundColor: 'red',
     },
 });
 
