@@ -10,7 +10,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4c2322e-7899-4168-b557-eae62a863872" name="Default Changelist" comment="" />
+    <list default="true" id="e4c2322e-7899-4168-b557-eae62a863872" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/styles.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +88,7 @@
       <workItem from="1616035488229" duration="7911000" />
       <workItem from="1616072553652" duration="1058000" />
       <workItem from="1617199133175" duration="2985000" />
-      <workItem from="1617211707227" duration="15698000" />
+      <workItem from="1617211707227" duration="22282000" />
     </task>
     <servers />
   </component>
@@ -120,17 +124,5 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="687" y="243" width="672" height="678" key="search.everywhere.popup/-1920.349.1920.1030/0.0.2048.1112@0.0.2048.1112" timestamp="1617224960390" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/styles.tsx</url>
-          <line>282</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

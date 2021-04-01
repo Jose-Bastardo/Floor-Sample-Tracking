@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
         marginLeft: '2%'
     },
     theadname: {
-        color: '#9295AB',
+        color: '#777777',
         fontWeight: 'bold',
         position: 'absolute',
         marginLeft: '11%',
@@ -293,44 +293,66 @@ const styles = StyleSheet.create({
         marginLeft: '93%'
     },
     loginmain:{
-      width: '70%',
+      width: '65%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        backgroundColor: 'white',
+        backgroundColor: '#660066',
         marginTop: '3%',
         height: normalize(140),
+        borderRadius: normalize(10),
     },
     loginarticle:{
         width: '50%',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: '3%',
-        backgroundImage: 'linear-gradient(darkgrey, grey , purple)',
+        backgroundColor: 'white',
         display: 'flex',
         alignItems: 'center',
         height: '90%',
+        borderRadius: normalize(10),
     },
     logintitle:{
         fontSize: normalize(10),
         textAlign: 'center',
-        marginTop: '10%'
+        marginTop: '12%',
+        color: 'black',
     },
     logintext:{
         fontSize: normalize(6),
         textAlign: 'center',
-        marginTop: '10%',
+        marginTop: '13%',
+        fontWeight: 'bold',
+        color: '#777777',
     },
     loginuserinput:{
-        marginTop: '5%',
         fontSize: normalize(6),
-        backgroundColor: '#660066',
     },
     loginpasswordinput:{
-        marginTop: '5%',
         fontSize: normalize(6),
     },
     loginsubmit:{
-        marginTop: '5%',
+        marginTop: '8%',
+        width: '55%',
+    },
+    registerbutton:{
+        marginTop: '4%',
+        width: '55%',
+    },
+    userinputcontainer:{
+        marginTop: '7%',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
+    passwordinputcontainer:{
+        marginTop: '3%',
+        borderWidth: 1,
+        borderColor: 'black',
+    },
+    ortext:{
+      marginTop: '4%',
+        fontSize: normalize(3),
+        color: '#777777'
     },
 });
 

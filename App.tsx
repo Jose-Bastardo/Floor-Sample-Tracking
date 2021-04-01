@@ -76,12 +76,20 @@ export class login extends React.Component{
                     <View style={styles.loginarticle}>
                         <Text style={styles.logintitle}>Floor Sample Tracking</Text>
                         <Text style={styles.logintext}>Log-in to your account</Text>
-                        <TextInput style={styles.loginuserinput} placeholder={"Username"} value={usernameinput}
-                                   onChangeText={(usernameinput) => this.setState({usernameinput})}/>
-                        <TextInput style={styles.loginpasswordinput} value={passwordinput} onChangeText={(passwordinput) => this.setState({passwordinput})}
-                                   placeholder={"Password"} secureTextEntry={true}/>
+                        <View style={styles.userinputcontainer}>
+                            <TextInput style={styles.loginuserinput} placeholder={"Username"} value={usernameinput}
+                                       onChangeText={(usernameinput) => this.setState({usernameinput})}/>
+                        </View>
+                        <View style={styles.passwordinputcontainer}>
+                            <TextInput style={styles.loginpasswordinput} value={passwordinput} onChangeText={(passwordinput) => this.setState({passwordinput})}
+                                       placeholder={"Password"} secureTextEntry={true}/>
+                        </View>
                         <View style={styles.loginsubmit}>
-                            <Button color='#221ECC' title="Submit" onPress={() => loginsubmit()}/>
+                            <Button color='#660066' title="Log In" onPress={() => loginsubmit()}/>
+                        </View>
+                        <Text style={styles.ortext}>or</Text>
+                        <View style={styles.registerbutton}>
+                            <Button color='#660066' title="Register" onPress={() => loginsubmit()}/>
                         </View>
                     </View>
                 </View>
