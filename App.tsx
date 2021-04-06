@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import {CheckBox, Dimensions, Platform, PixelRatio,
     StyleSheet, Text, View, Button, Alert, ViewPropTypes,
-    AppRegistry, TouchableOpacity, TextInput} from 'react-native';
+    AppRegistry, TouchableOpacity, TextInput, Image} from 'react-native';
 import ReactDOM from 'react-dom';
 // @ts-ignore
 import DropdownMenu from 'react-native-dropdown-menu';
@@ -82,7 +82,7 @@ export class login extends React.Component{
             <View>
                 <View style={styles.loginmain}>
                     <View style={styles.loginarticle}>
-                        <Text style={styles.logintitle}>Floor Sample Tracking</Text>
+                        <Image style={styles.logo} source={require('./assets/Logo.png')}/>
                         <Text style={styles.loginnotificationtext}>{this.state.notificationtext}</Text>
                         <Text style={styles.logintext}>Log-in to your account</Text>
                         <View style={styles.emailinputcontainer}>
@@ -94,11 +94,11 @@ export class login extends React.Component{
                                        placeholder={"Password"} secureTextEntry={true}/>
                         </View>
                         <View style={styles.loginsubmit}>
-                            <Button color='#221ECC' title="Log In" onPress={() => loginsubmit()}/>
+                            <Button color='#245760' title="Log In" onPress={() => loginsubmit()}/>
                         </View>
                         <Text style={styles.ortext}>or</Text>
                         <View style={styles.registerbutton}>
-                            <Button color='#221ECC' title="Register" onPress={() => navigation.navigate('Registration')}/>
+                            <Button color='#245760' title="Register" onPress={() => navigation.navigate('Registration')}/>
                         </View>
                     </View>
                 </View>
