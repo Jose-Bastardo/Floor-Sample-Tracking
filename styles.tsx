@@ -24,8 +24,101 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         display: 'flex',
         alignContent: 'center',
-        justifyContent: 'center',
         alignItems: 'center',
+        height: '86.9%',
+    },
+
+    header: {
+        height: '8% ',
+        width: '97%',
+        display: 'flex',
+        alignContent: 'center',
+        marginTop: '2%',
+    },
+
+    monochromelogo: {
+        marginLeft: '2%',
+        height: '80%',
+        width: '15%',
+
+    },
+
+    homemain: {
+        backgroundColor: '#29C785',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        height: '100%',
+        marginTop: '1%',
+    },
+
+    nav:{
+        display: 'flex',
+        minHeight: normalize(12),
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        width: '90%',
+        marginTop: '1%',
+    },
+    navbuttons:{
+        minHeight: normalize(8),
+        display: 'flex',
+        flexDirection: 'row',
+        minWidth: '100%',
+        justifyContent: 'space-evenly',
+    },
+
+    searchbarrow: {
+        display: 'flex',
+        flexDirection: 'row',
+        minHeight: normalize(12),
+        alignItems: 'center',
+        backgroundColor: 'white',
+        borderRadius: 20,
+    },
+    searchbarview: {
+        width: normalize(100),
+        marginLeft: normalize(25),
+        minHeight: normalize(5),
+        borderWidth: 0,
+        borderColor: 'black',
+    },
+
+    searchbarcontainer:{
+        backgroundColor: 'white',
+        borderWidth: 0,
+        borderColor: 'blue',
+        borderBottomColor: 'transparent',
+        borderTopColor: 'transparent'
+    },
+    searchbarinputcontainer:{
+        backgroundColor: 'lightgrey',
+        borderWidth: 0,
+        borderColor: 'red',
+    },
+    searchbarinput: {
+        color: 'grey',
+        fontFamily: 'Arial',
+        borderWidth: 0,
+        borderColor: 'green',
+    },
+
+    tableview: {
+        display: 'flex',
+        width: '90%',
+        alignContent: 'center',
+        borderRadius: 20,
+        marginBottom: '4%',
+        backgroundColor: 'white',
+        height: '85%',
+        marginTop: '1%',
+    },
+
+    checkouttable: {
+        backgroundColor: 'white',
+        maxHeight: normalize(50),
+        width: '90%',
     },
 
     checkoutform:{
@@ -41,78 +134,12 @@ const styles = StyleSheet.create({
         marginLeft: '5%',
     },
 
-    searchbarcontainer:{
-        backgroundColor: 'white',
-        borderWidth: 0,
-    },
-    searchbarinputcontainer:{
-        backgroundColor: 'white',
-        borderWidth: normalize(.5),
-    },
-    searchbarinput: {
-        color: 'grey',
-        fontFamily: 'Arial',
-    },
-
-    mainview: {
-        display: 'flex',
-        width: '90%',
-        alignContent: 'center',
-    },
-
-    checkouttable: {
-        backgroundColor: 'white',
-        maxHeight: normalize(50),
-        width: '90%',
-    },
-
-    header: {
-        display: 'flex',
-        height: normalize(15),
-        alignContent: 'center',
-        backgroundColor: 'white',
-        marginLeft: normalize(30),
-        marginRight: normalize(30),
-    },
-
     title: {
         fontSize: normalize(10),
         fontFamily: 'Arial',
     },
-    samplesbutton:{
-        backgroundColor: '#868686',
-        width: '20%',
-    },
-    checkoutbutton:{
-        backgroundColor: '#B8B8B8',
-    },
-    nav:{
-        display: 'flex',
-        minHeight: normalize(12),
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        backgroundColor: '#F4F5FC',
-        width: '90%'
-    },
-    navbuttons:{
-        minHeight: normalize(8),
-        display: 'flex',
-        flexDirection: 'row',
-        minWidth: '100%',
-        justifyContent: 'space-evenly',
-    },
-    filterrow: {
-        display: 'flex',
-        flexDirection: 'row',
-        minHeight: normalize(12),
-        alignItems: 'center',
-    },
-    filterbutton: {
-        width: normalize(100),
-        marginLeft: normalize(25),
-        minHeight: normalize(5),
-    },
+
+
     table: {
         borderColor: 'black',
     },
@@ -292,66 +319,57 @@ const styles = StyleSheet.create({
         position: 'absolute',
         marginLeft: '93%'
     },
-    loginmain:{
-      width: '55%',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        backgroundColor: '#1d1bb1',
-        marginTop: '3%',
-        height: normalize(140),
-        borderRadius: normalize(10),
+    loginbody:{
+        backgroundColor: '#3E3C51',
+        height: '100%'
     },
     loginarticle:{
-        width: '65%',
+        width: '35%',
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: '3%',
+        marginTop: '2%',
         backgroundColor: '#29C785',
         display: 'flex',
         alignItems: 'center',
         height: '90%',
-        borderRadius: normalize(10),
     },
     logo:{
-        marginTop: '12%',
+        marginTop: '17%',
         width: '100%',
         height: '15%',
     },
     logintext:{
-        fontSize: normalize(6),
+        fontSize: normalize(5),
         textAlign: 'center',
-        marginTop: '5%',
+        marginTop: '8%',
         fontWeight: 'bold',
         color: 'white',
     },
     loginemailinput:{
-        fontSize: normalize(6),
+        fontSize: normalize(5),
     },
     loginpasswordinput:{
-        fontSize: normalize(6),
+        fontSize: normalize(5),
     },
     loginsubmit:{
-        marginTop: '8%',
-        width: '55%',
+        marginTop: '14%',
+        width: '45%',
     },
     registerbutton:{
-        marginTop: '4%',
-        width: '55%',
+        marginTop: '6%',
+        width: '45%',
     },
     emailinputcontainer:{
-        marginTop: '7%',
-        borderWidth: 1,
-        borderColor: 'black',
+        marginTop: '15%',
+        borderBottomWidth: 1,
+        borderBottomColor: 'white',
+        width: '55%'
     },
     passwordinputcontainer:{
-        marginTop: '3%',
-        borderWidth: 1,
-        borderColor: 'black',
-    },
-    ortext:{
-      marginTop: '4%',
-        fontSize: normalize(4),
-        color: '#777777'
+        marginTop: '5%',
+        borderBottomWidth: 1,
+        borderBottomColor: 'white',
+        width: '55%'
     },
     registrationtext:{
         fontSize: normalize(6),

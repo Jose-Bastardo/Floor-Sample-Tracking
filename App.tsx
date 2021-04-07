@@ -1,16 +1,10 @@
 import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import {CheckBox, Dimensions, Platform, PixelRatio,
     StyleSheet, Text, View, Button, Alert, ViewPropTypes,
     AppRegistry, TouchableOpacity, TextInput, Image} from 'react-native';
-import ReactDOM from 'react-dom';
-// @ts-ignore
-import DropdownMenu from 'react-native-dropdown-menu';
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 import { NavigationContainer,} from '@react-navigation/native';
 import { createStackNavigator, } from '@react-navigation/stack';
-import { withNavigation, } from 'react-navigation';
 // @ts-ignore
 import { SearchBar,} from 'react-native-elements';
 import {styles} from './styles';
@@ -24,6 +18,10 @@ const MyStack = () => {
                 headerShown: false
             }}>
                 <Stack.Screen
+                    name="Home"
+                    component={Home}
+                />
+                <Stack.Screen
                     name="Log In"
                     component={login}
                 />
@@ -31,10 +29,7 @@ const MyStack = () => {
                     name="Registration"
                     component={registration}
                 />
-                <Stack.Screen
-                    name="Home"
-                    component={Home}
-                />
+
                 <Stack.Screen
                     name="Checkout"
                     component={Checkout}
@@ -79,12 +74,10 @@ export class login extends React.Component{
 
 
         return(
-            <View>
-                <View style={styles.loginmain}>
+            <View style={styles.loginbody}>
                     <View style={styles.loginarticle}>
                         <Image style={styles.logo} source={require('./assets/Logo.png')}/>
                         <Text style={styles.loginnotificationtext}>{this.state.notificationtext}</Text>
-                        <Text style={styles.logintext}>Log-in to your account</Text>
                         <View style={styles.emailinputcontainer}>
                             <TextInput style={styles.loginemailinput} placeholder={"Email"} value={emailinput}
                                        onChangeText={(emailinput) => this.setState({emailinput})}/>
@@ -96,12 +89,10 @@ export class login extends React.Component{
                         <View style={styles.loginsubmit}>
                             <Button color='#245760' title="Log In" onPress={() => loginsubmit()}/>
                         </View>
-                        <Text style={styles.ortext}>or</Text>
                         <View style={styles.registerbutton}>
                             <Button color='#245760' title="Register" onPress={() => navigation.navigate('Registration')}/>
                         </View>
                     </View>
-                </View>
             </View>
         );
     };
@@ -583,7 +574,7 @@ export class Home extends React.Component{
                         <Text style={styles.cellfirstname}>{this.data[i][5]}</Text>
                         <Text style={styles.celllastname}>{this.data[i][6]}</Text>
                         <View style={styles.chargebutton}>
-                            <Button color='#221ECC' title="charge"/>
+                            <Button color='#245760' title="charge"/>
                         </View>
                     </View>
                 )
@@ -600,7 +591,7 @@ export class Home extends React.Component{
                         <Text style={styles.cellfirstname}>{this.data[i][5]}</Text>
                         <Text style={styles.celllastname}>{this.data[i][6]}</Text>
                         <View style={styles.chargebutton}>
-                            <Button color='#221ECC' title="charge"/>
+                            <Button color='#245760' title="charge"/>
                         </View>
                     </View>
                 )
@@ -612,80 +603,82 @@ export class Home extends React.Component{
         return (
             <View style={styles.body}>
                 <View style={styles.header}>
-                    <Text style={styles.title}>Floor Sample Tracking</Text>
+                    <Image style={styles.monochromelogo} source={require('./assets/logo_monochrome.png')}/>
                 </View>
-                <View style={styles.nav}>
-                    <View style={styles.navbuttons}>
-                        <Button color='#221ECC' title="Samples" onPress={() =>
-                            navigation.navigate('Home')
-                        }/>
-                        <Button color='#221ECC' title="Checkout" onPress={() =>
-                            navigation.navigate('Checkout')
-                        }/>
-                        <Button color='#221ECC' title="Log Out" onPress={() =>
-                            navigation.navigate('Log In')
-                        }/>
-                    </View>
-                </View>
-                <View style={styles.mainview}>
-                    <View style={styles.filterrow}>
-                        <View style={styles.filterbutton}>
-                            <SearchBar
-                                // @ts-ignore
-                                placeholder="Type Here..."
-                                onChangeText={this.updateSearch}
-                                value={search}
-                                inputContainerStyle={styles.searchbarinputcontainer}
-                                containerStyle={styles.searchbarcontainer}
-                                inputStyle={styles.searchbarinput}
-                                round={'True'}
-                            />
+                <View style={styles.homemain}>
+                    <View style={styles.nav}>
+                        <View style={styles.navbuttons}>
+                            <Button color='#245760' title="Samples" onPress={() =>
+                                navigation.navigate('Home')
+                            }/>
+                            <Button color='#245760' title="Checkout" onPress={() =>
+                                navigation.navigate('Checkout')
+                            }/>
+                            <Button color='#245760' title="Log Out" onPress={() =>
+                                navigation.navigate('Log In')
+                            }/>
                         </View>
                     </View>
-                    <View style={styles.table}>
-                        <View style={styles.thead}>
-                            <View style={styles.theadsampleid}>
-                                <TouchableOpacity onPress={() => this.Sort(0)}>
-                                    <Text style={styles.headertext}>Order ID</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.theadname}>
-                                <TouchableOpacity  onPress={() => this.Sort(1)}>
-                                    <Text style={styles.headertext}>Name</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.theadtype}>
-                                <TouchableOpacity onPress={() => this.Sort(2)}>
-                                    <Text style={styles.headertext}>Type</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.theadstatus}>
-                                <TouchableOpacity onPress={() => this.Sort(4)}>
-                                    <Text style={styles.headertext}>Status</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.theadborrow_date}>
-                                <TouchableOpacity onPress={() => this.Sort(3)}>
-                                    <Text style={styles.headertext}>Borrow Date</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.theaddue_date}>
-                                <TouchableOpacity onPress={() => this.Sort(4)}>
-                                    <Text style={styles.headertext}>Due Date</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.theadfirstname}>
-                                <TouchableOpacity onPress={() => this.Sort(5)}>
-                                    <Text style={styles.headertext}>First Name</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.theadlastname}>
-                                <TouchableOpacity onPress={() => this.Sort(6)}>
-                                    <Text style={styles.headertext}>Last Name</Text>
-                                </TouchableOpacity>
+                    <View style={styles.tableview}>
+                        <View style={styles.searchbarrow}>
+                            <View style={styles.searchbarview}>
+                                <SearchBar
+                                    // @ts-ignore
+                                    placeholder="Type Here..."
+                                    onChangeText={this.updateSearch}
+                                    value={search}
+                                    inputContainerStyle={styles.searchbarinputcontainer}
+                                    containerStyle={styles.searchbarcontainer}
+                                    inputStyle={styles.searchbarinput}
+                                    round={'True'}
+                                />
                             </View>
                         </View>
-                        {table}
+                        <View style={styles.table}>
+                            <View style={styles.thead}>
+                                <View style={styles.theadsampleid}>
+                                    <TouchableOpacity onPress={() => this.Sort(0)}>
+                                        <Text style={styles.headertext}>Order ID</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.theadname}>
+                                    <TouchableOpacity  onPress={() => this.Sort(1)}>
+                                        <Text style={styles.headertext}>Name</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.theadtype}>
+                                    <TouchableOpacity onPress={() => this.Sort(2)}>
+                                        <Text style={styles.headertext}>Type</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.theadstatus}>
+                                    <TouchableOpacity onPress={() => this.Sort(4)}>
+                                        <Text style={styles.headertext}>Status</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.theadborrow_date}>
+                                    <TouchableOpacity onPress={() => this.Sort(3)}>
+                                        <Text style={styles.headertext}>Borrow Date</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.theaddue_date}>
+                                    <TouchableOpacity onPress={() => this.Sort(4)}>
+                                        <Text style={styles.headertext}>Due Date</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.theadfirstname}>
+                                    <TouchableOpacity onPress={() => this.Sort(5)}>
+                                        <Text style={styles.headertext}>First Name</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.theadlastname}>
+                                    <TouchableOpacity onPress={() => this.Sort(6)}>
+                                        <Text style={styles.headertext}>Last Name</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                            {table}
+                        </View>
                     </View>
                 </View>
             </View>
