@@ -333,7 +333,7 @@ const styles = StyleSheet.create({
         marginLeft: '93%'
     },
     loginbody:{
-        backgroundColor: '#3E3C51',
+        backgroundColor: '#245760',
         height: '100%'
     },
     loginarticle:{
