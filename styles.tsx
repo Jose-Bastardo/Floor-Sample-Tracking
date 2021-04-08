@@ -21,66 +21,71 @@ export function normalize(size: number) {
 const styles = StyleSheet.create({
 
     body: {
-        backgroundColor: 'white',
+        backgroundColor: '#29C785',
         display: 'flex',
         alignContent: 'center',
         alignItems: 'center',
-        height: '86.9%',
+        height: '100%',
+        flexDirection: 'row',
+    },
+
+    mainbody: {
+        height: '100%',
+        width: '91%',
     },
 
     header: {
-        height: '8% ',
-        width: '97%',
+        height: '20% ',
+        width: '100%',
         display: 'flex',
         alignContent: 'center',
-        marginTop: '2%',
     },
 
     monochromelogo: {
-        marginLeft: '2%',
-        height: '80%',
-        width: '15%',
-
+        marginTop: '1%',
+        height: '100%',
+        width: '35%',
     },
 
     homemain: {
-        backgroundColor: '#29C785',
         width: '100%',
         display: 'flex',
         alignItems: 'center',
-        height: '100%',
-        marginTop: '1%',
+        height: '90%',
+        paddingTop: '1%',
     },
 
     nav:{
         display: 'flex',
-        minHeight: normalize(12),
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        width: '90%',
-        marginTop: '1%',
+        width: '8%',
+        height: '95%',
+        marginLeft: '1%',
+        backgroundColor: '#245760',
+        borderRadius: 20,
     },
     navbuttons:{
-        minHeight: normalize(8),
         display: 'flex',
-        flexDirection: 'row',
-        minWidth: '100%',
+        flexDirection: 'column',
+        Width: '60%',
+        height: '70%',
         justifyContent: 'space-evenly',
+        justifyItems: 'space_between',
     },
 
     searchbarrow: {
         display: 'flex',
         flexDirection: 'row',
-        minHeight: normalize(12),
+        minHeight: '10%',
         alignItems: 'center',
         backgroundColor: 'white',
         borderRadius: 20,
     },
     searchbarview: {
-        width: normalize(100),
-        marginLeft: normalize(25),
-        minHeight: normalize(5),
+        width: '40%',
+        marginLeft: '10%',
         borderWidth: 0,
         borderColor: 'black',
     },
@@ -106,13 +111,13 @@ const styles = StyleSheet.create({
 
     tableview: {
         display: 'flex',
-        width: '90%',
+        width: '97%',
         alignContent: 'center',
         borderRadius: 20,
-        marginBottom: '4%',
+        paddingBottom: '4%',
         backgroundColor: 'white',
         height: '85%',
-        marginTop: '1%',
+        paddingTop: '.4%',
     },
 
     checkouttable: {
@@ -139,16 +144,24 @@ const styles = StyleSheet.create({
         fontFamily: 'Arial',
     },
 
-
     table: {
         borderColor: 'black',
+        display: 'flex',
+        flexDirection: 'column',
     },
+
+    tabledata: {
+      display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+    },
+
     thead:{
         display: 'flex',
         flexDirection: 'row',
         flex: 1,
         backgroundColor: '#F4F4FB',
-        minHeight: normalize(8),
+        minHeight: '20%',
         alignItems: 'center',
     },
     headertext:{
@@ -160,7 +173,7 @@ const styles = StyleSheet.create({
         color: '#777777',
         fontWeight: 'bold',
         fontFamily: 'Arial',
-        marginLeft: '16.8%',
+        paddingLeft: '16.8%',
     },
 
     theadsampleid: {

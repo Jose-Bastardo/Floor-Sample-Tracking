@@ -602,82 +602,86 @@ export class Home extends React.Component{
         //Render App
         return (
             <View style={styles.body}>
-                <View style={styles.header}>
-                    <Image style={styles.monochromelogo} source={require('./assets/logo_monochrome.png')}/>
-                </View>
-                <View style={styles.homemain}>
-                    <View style={styles.nav}>
-                        <View style={styles.navbuttons}>
-                            <Button color='#245760' title="Samples" onPress={() =>
-                                navigation.navigate('Home')
-                            }/>
-                            <Button color='#245760' title="Checkout" onPress={() =>
-                                navigation.navigate('Checkout')
-                            }/>
-                            <Button color='#245760' title="Log Out" onPress={() =>
-                                navigation.navigate('Log In')
-                            }/>
-                        </View>
+                <View style={styles.nav}>
+                    <View style={styles.navbuttons}>
+                        <Button color='#245760' title="Samples" onPress={() =>
+                            navigation.navigate('Home')
+                        }/>
+                        <Button color='#245760' title="Checkout" onPress={() =>
+                            navigation.navigate('Checkout')
+                        }/>
+                        <Button color='#245760' title="Log Out" onPress={() =>
+                            navigation.navigate('Log In')
+                        }/>
                     </View>
-                    <View style={styles.tableview}>
-                        <View style={styles.searchbarrow}>
-                            <View style={styles.searchbarview}>
-                                <SearchBar
-                                    // @ts-ignore
-                                    placeholder="Type Here..."
-                                    onChangeText={this.updateSearch}
-                                    value={search}
-                                    inputContainerStyle={styles.searchbarinputcontainer}
-                                    containerStyle={styles.searchbarcontainer}
-                                    inputStyle={styles.searchbarinput}
-                                    round={'True'}
-                                />
-                            </View>
-                        </View>
-                        <View style={styles.table}>
-                            <View style={styles.thead}>
-                                <View style={styles.theadsampleid}>
-                                    <TouchableOpacity onPress={() => this.Sort(0)}>
-                                        <Text style={styles.headertext}>Order ID</Text>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={styles.theadname}>
-                                    <TouchableOpacity  onPress={() => this.Sort(1)}>
-                                        <Text style={styles.headertext}>Name</Text>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={styles.theadtype}>
-                                    <TouchableOpacity onPress={() => this.Sort(2)}>
-                                        <Text style={styles.headertext}>Type</Text>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={styles.theadstatus}>
-                                    <TouchableOpacity onPress={() => this.Sort(4)}>
-                                        <Text style={styles.headertext}>Status</Text>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={styles.theadborrow_date}>
-                                    <TouchableOpacity onPress={() => this.Sort(3)}>
-                                        <Text style={styles.headertext}>Borrow Date</Text>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={styles.theaddue_date}>
-                                    <TouchableOpacity onPress={() => this.Sort(4)}>
-                                        <Text style={styles.headertext}>Due Date</Text>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={styles.theadfirstname}>
-                                    <TouchableOpacity onPress={() => this.Sort(5)}>
-                                        <Text style={styles.headertext}>First Name</Text>
-                                    </TouchableOpacity>
-                                </View>
-                                <View style={styles.theadlastname}>
-                                    <TouchableOpacity onPress={() => this.Sort(6)}>
-                                        <Text style={styles.headertext}>Last Name</Text>
-                                    </TouchableOpacity>
+                </View>
+                <View style={styles.mainbody}>
+                    <View style={styles.header}>
+                        <Image style={styles.monochromelogo} source={require('./assets/Logo.png')}/>
+                    </View>
+                    <View style={styles.homemain}>
+                        <View style={styles.tableview}>
+                            <View style={styles.searchbarrow}>
+                                <View style={styles.searchbarview}>
+                                    <SearchBar
+                                        // @ts-ignore
+                                        placeholder="Type Here..."
+                                        onChangeText={this.updateSearch}
+                                        value={search}
+                                        inputContainerStyle={styles.searchbarinputcontainer}
+                                        containerStyle={styles.searchbarcontainer}
+                                        inputStyle={styles.searchbarinput}
+                                        round={'True'}
+                                    />
                                 </View>
                             </View>
-                            {table}
+                            <View style={styles.table}>
+                                <View style={styles.thead}>
+                                    <View style={styles.theadsampleid}>
+                                        <TouchableOpacity onPress={() => this.Sort(0)}>
+                                            <Text style={styles.headertext}>Order ID</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={styles.theadname}>
+                                        <TouchableOpacity  onPress={() => this.Sort(1)}>
+                                            <Text style={styles.headertext}>Name</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={styles.theadtype}>
+                                        <TouchableOpacity onPress={() => this.Sort(2)}>
+                                            <Text style={styles.headertext}>Type</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={styles.theadstatus}>
+                                        <TouchableOpacity onPress={() => this.Sort(4)}>
+                                            <Text style={styles.headertext}>Status</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={styles.theadborrow_date}>
+                                        <TouchableOpacity onPress={() => this.Sort(3)}>
+                                            <Text style={styles.headertext}>Borrow Date</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={styles.theaddue_date}>
+                                        <TouchableOpacity onPress={() => this.Sort(4)}>
+                                            <Text style={styles.headertext}>Due Date</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={styles.theadfirstname}>
+                                        <TouchableOpacity onPress={() => this.Sort(5)}>
+                                            <Text style={styles.headertext}>First Name</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={styles.theadlastname}>
+                                        <TouchableOpacity onPress={() => this.Sort(6)}>
+                                            <Text style={styles.headertext}>Last Name</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                                <View style={styles.tabledata}>
+                                {table}
+                                </View>
+                            </View>
                         </View>
                     </View>
                 </View>
