@@ -1,15 +1,15 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import {CheckBox, Dimensions, Platform, PixelRatio,
-    StyleSheet, Text, View, Button, Alert, ViewPropTypes,
-    AppRegistry, TouchableOpacity, TextInput, Image} from 'react-native';
-import { NavigationContainer,} from '@react-navigation/native';
-import { createStackNavigator, } from '@react-navigation/stack';
+import {Button, Image, Text, TextInput, TouchableOpacity, View, ScrollView} from 'react-native';
+import {NavigationContainer,} from '@react-navigation/native';
+import {createStackNavigator,} from '@react-navigation/stack';
 // @ts-ignore
-import { SearchBar,} from 'react-native-elements';
+import {SearchBar,} from 'react-native-elements';
 import {styles} from './styles';
 
 const Stack = createStackNavigator();
+
+var data = { Checkout_ID: '', Cus_First: '', Sam_RemoveDate: '', Cus_Last: '', Sam_ReturnDueDate: '', Sam_Type: '' }
 
 const MyStack = () => {
     return (
@@ -39,12 +39,7 @@ const MyStack = () => {
     );
 };
 
-const data = [
-        ["21","Old Blue Seas Vynyl Plank", "Vinyl", "3/30/2021", "4/4/2021", "John", "Smith"],
-        ["23","Ridgeway Oak Vinyl Plank", "Vinyl", "3/25/2021", "3/30/2021", "Bobby", "Brown"],
-        ["45", "Akoya Vinyl Plank", "Vinyl", "3/26/2021", "4/5/2021","Edgar", "Allen Poe"],
-        ["32", "Oak Wood Plank", "Wood", "3/20/2021", "3/25/2021","Edward", "Cunningham"],
-    ]
+
 
 export class login extends React.Component{
     state = {
@@ -158,11 +153,32 @@ export class registration extends React.Component{
 export class Home extends React.Component{
     //Render Table
     state = {
-        search:"",
-        tableData: data,
-    }
+        search: '',
+        tableData: [{Checkout_ID: '', Sam_Type: '', Sam_RemoveDate: '', Sam_ReturnDueDate: '', Cus_First: '', Cus_Last: ''}]
+    };
 
     data = this.state.tableData;
+
+    // @ts-ignore
+    setdata = query => {
+        this.setState({
+            tableData: query
+        });
+    };
+
+    test() {
+
+        fetch('http://192.168.1.195:3000/samples', {
+            mode: 'cors',
+        })
+            .then(response => response.json())
+            .then(query => this.setState({
+                tableData: query
+            }))
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
     orderIDSort = 1
     NameSort = 0
@@ -178,12 +194,15 @@ export class Home extends React.Component{
         this.data = [];
         // update tableview data
         for(var i = 0; i < this.state.tableData.length; i++) {
-            var name = this.state.tableData[i][5] + " " + this.state.tableData[i][6]
-            if(search === '' || this.state.tableData[i][0].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i][1].toLowerCase().includes(search.toLowerCase()) ||
-                this.state.tableData[i][2].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i][3].toLowerCase().includes(search.toLowerCase()) ||
-                this.state.tableData[i][5].toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i][5].toLowerCase().includes(search.toLowerCase()) ||
-                this.state.tableData[i][6].toLowerCase().includes(search.toLowerCase()) || name.toLowerCase().includes(search.toLowerCase())){
+            var name = this.state.tableData[i].Cus_First + " " + this.state.tableData[i].Cus_Last
+            if(search === '' || this.state.tableData[i].Checkout_ID == search.toLowerCase() || this.state.tableData[i].Sam_Type.toLowerCase().includes(search.toLowerCase()) ||
+                this.state.tableData[i].Sam_RemoveDate.toLowerCase().includes(search.toLowerCase()) || this.state.tableData[i].Sam_ReturnDueDate.toLowerCase().includes(search.toLowerCase()) ||
+                this.state.tableData[i].Cus_First.toLowerCase().includes(search.toLowerCase()) ||
+                this.state.tableData[i].Cus_Last.toLowerCase().includes(search.toLowerCase()) || name.toLowerCase().includes(search.toLowerCase())){
                 this.data.push(this.state.tableData[i])
+                this.setState({
+                    tableData: this.data,
+                })
             };
         }
     }
@@ -203,8 +222,8 @@ export class Home extends React.Component{
                 if (this.orderIDSort === 0) {
                     this.orderIDSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[0].toLowerCase();
-                        var y = b[0].toLowerCase();
+                        var x = a.Checkout_ID;
+                        var y = b.Checkout_ID;
                         if (x < y) {
                             return -1;
                         }
@@ -216,8 +235,8 @@ export class Home extends React.Component{
                 } else if (this.orderIDSort === 1) {
                     this.orderIDSort = 2;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[0].toLowerCase();
-                        var y = b[0].toLowerCase();
+                        var x = a.Checkout_ID;
+                        var y = b.Checkout_ID;
                         if (x < y) {
                             return 1;
                         }
@@ -229,8 +248,8 @@ export class Home extends React.Component{
                 } else if (this.orderIDSort === 2) {
                     this.orderIDSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[0].toLowerCase();
-                        var y = b[0].toLowerCase();
+                        var x = a.Checkout_ID;
+                        var y = b.Checkout_ID;
                         if (x < y) {
                             return -1;
                         }
@@ -253,8 +272,8 @@ export class Home extends React.Component{
                 if (this.NameSort === 0) {
                     this.NameSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[1].toLowerCase();
-                        var y = b[1].toLowerCase();
+                        var x = a.Sam_Type.toLowerCase();
+                        var y = b.Sam_Type.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -266,8 +285,8 @@ export class Home extends React.Component{
                 } else if (this.NameSort === 1) {
                     this.NameSort = 2;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[1].toLowerCase();
-                        var y = b[1].toLowerCase();
+                        var x = a.Sam_Type.toLowerCase();
+                        var y = b.Sam_Type.toLowerCase();
                         if (x < y) {
                             return 1;
                         }
@@ -276,12 +295,12 @@ export class Home extends React.Component{
                         }
                         return 0;
                     });
-                    ;
+
                 } else if (this.NameSort === 2) {
                     this.NameSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[1].toLowerCase();
-                        var y = b[1].toLowerCase();
+                        var x = a.Sam_Type.toLowerCase();
+                        var y = b.Sam_Type.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -352,8 +371,8 @@ export class Home extends React.Component{
                 if (this.borrowdateSort === 0) {
                     this.borrowdateSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[3].toLowerCase();
-                        var y = b[3].toLowerCase();
+                        var x = a.Sam_RemoveDate.toLowerCase();
+                        var y = b.Sam_RemoveDate.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -365,8 +384,8 @@ export class Home extends React.Component{
                 } else if (this.borrowdateSort === 1) {
                     this.borrowdateSort = 2;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[3].toLowerCase();
-                        var y = b[3].toLowerCase();
+                        var x = a.Sam_RemoveDate.toLowerCase();
+                        var y = b.Sam_RemoveDate.toLowerCase();
                         if (x < y) {
                             return 1;
                         }
@@ -378,8 +397,8 @@ export class Home extends React.Component{
                 } else if (this.borrowdateSort === 2) {
                     this.borrowdateSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[3].toLowerCase();
-                        var y = b[3].toLowerCase();
+                        var x = a.Sam_RemoveDate.toLowerCase();
+                        var y = b.Sam_RemoveDate.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -401,8 +420,8 @@ export class Home extends React.Component{
                 if (this.duedateSort === 0) {
                     this.duedateSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[4].toLowerCase();
-                        var y = b[4].toLowerCase();
+                        var x = a.Sam_ReturnDueDate.toLowerCase();
+                        var y = b.Sam_ReturnDueDate.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -414,8 +433,8 @@ export class Home extends React.Component{
                 } else if (this.duedateSort === 1) {
                     this.duedateSort = 2;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[4].toLowerCase();
-                        var y = b[4].toLowerCase();
+                        var x = a.Sam_ReturnDueDate.toLowerCase();
+                        var y = b.Sam_ReturnDueDate.toLowerCase();
                         if (x < y) {
                             return 1;
                         }
@@ -427,8 +446,8 @@ export class Home extends React.Component{
                 } else if (this.duedateSort === 2) {
                     this.duedateSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[4].toLowerCase();
-                        var y = b[4].toLowerCase();
+                        var x = a.Sam_ReturnDueDate.toLowerCase();
+                        var y = b.Sam_ReturnDueDate.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -450,8 +469,8 @@ export class Home extends React.Component{
                 if (this.firstnameSort === 0) {
                     this.firstnameSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[5].toLowerCase();
-                        var y = b[5].toLowerCase();
+                        var x = a.Cus_First.toLowerCase();
+                        var y = b.Cus_First.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -463,8 +482,8 @@ export class Home extends React.Component{
                 } else if (this.firstnameSort === 1) {
                     this.firstnameSort = 2;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[5].toLowerCase();
-                        var y = b[5].toLowerCase();
+                        var x = a.Cus_First.toLowerCase();
+                        var y = b.Cus_First.toLowerCase();
                         if (x < y) {
                             return 1;
                         }
@@ -476,8 +495,8 @@ export class Home extends React.Component{
                 } else if (this.firstnameSort === 2) {
                     this.firstnameSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[5].toLowerCase();
-                        var y = b[5].toLowerCase();
+                        var x = a.Cus_First.toLowerCase();
+                        var y = b.Cus_First.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -499,8 +518,8 @@ export class Home extends React.Component{
                 if (this.lastnameSort === 0) {
                     this.lastnameSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[6].toLowerCase();
-                        var y = b[6].toLowerCase();
+                        var x = a.Cus_Last.toLowerCase();
+                        var y = b.Cus_Last.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -512,8 +531,8 @@ export class Home extends React.Component{
                 } else if (this.lastnameSort === 1) {
                     this.lastnameSort = 2;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[6].toLowerCase();
-                        var y = b[6].toLowerCase();
+                        var x = a.Cus_Last.toLowerCase();
+                        var y = b.Cus_Last.toLowerCase();
                         if (x < y) {
                             return 1;
                         }
@@ -525,8 +544,8 @@ export class Home extends React.Component{
                 } else if (this.lastnameSort === 2) {
                     this.lastnameSort = 1;
                     this.state.tableData.sort(function (a, b) {
-                        var x = a[6].toLowerCase();
-                        var y = b[6].toLowerCase();
+                        var x = a.Cus_Last.toLowerCase();
+                        var y = b.Cus_Last.toLowerCase();
                         if (x < y) {
                             return -1;
                         }
@@ -542,6 +561,26 @@ export class Home extends React.Component{
     }
 
     render() {
+
+        fetch('http://192.168.1.195:3000/samples', {
+            mode: 'cors',
+        })
+            .then(response => response.json())
+            .then(query => this.setState({
+                tableData: query
+            }))
+            .catch((error) => {
+                console.error(error);
+            });
+        for(let i = 0; i<this.state.tableData.length; i++){
+            let a = this.state.tableData[i].Sam_RemoveDate.split('T')
+            this.state.tableData[i].Sam_RemoveDate = a[0]
+            a = this.state.tableData[i].Sam_ReturnDueDate.split('T')
+            this.state.tableData[i].Sam_ReturnDueDate = a[0]
+        }
+
+        this.data = this.state.tableData
+
         const { search } = this.state;
 
         // @ts-ignore
@@ -560,19 +599,18 @@ export class Home extends React.Component{
             } else {
                 rowstyle = styles.rowstripe;
             }
-            var duedate = new Date(this.data[i][4])
+            var duedate = new Date(this.data[i].Sam_ReturnDueDate)
 
             if(curdate > duedate) {
                 table.push(
-                    <View key={this.data[i][0]} style={rowstyle}>
-                        <Text style={styles.cellsampleid}>{this.data[i][0]}</Text>
-                        <Text style={styles.cellname}>{this.data[i][1]}</Text>
-                        <Text style={styles.celltype}>{this.data[i][2]}</Text>
+                    <View key={this.data[i].Checkout_ID} style={rowstyle}>
+                        <Text style={styles.cellsampleid}>{this.state.tableData[i].Checkout_ID}</Text>
+                        <Text style={styles.cellname}>{this.data[i].Sam_Type}</Text>
                         <Text style={styles.overdue}>OVERDUE</Text>
-                        <Text style={styles.cellborrow_date}>{this.data[i][3]}</Text>
-                        <Text style={styles.celldue_date}>{this.data[i][4]}</Text>
-                        <Text style={styles.cellfirstname}>{this.data[i][5]}</Text>
-                        <Text style={styles.celllastname}>{this.data[i][6]}</Text>
+                        <Text style={styles.cellborrow_date}>{this.data[i].Sam_RemoveDate}</Text>
+                        <Text style={styles.celldue_date}>{this.data[i].Sam_ReturnDueDate}</Text>
+                        <Text style={styles.cellfirstname}>{this.data[i].Cus_First}</Text>
+                        <Text style={styles.celllastname}>{this.data[i].Cus_Last}</Text>
                         <View style={styles.chargebutton}>
                             <Button color='#245760' title="charge"/>
                         </View>
@@ -581,15 +619,14 @@ export class Home extends React.Component{
             }
             else{
                 table.push(
-                    <View key={this.data[i][0]} style={rowstyle}>
-                        <Text style={styles.cellsampleid}>{this.data[i][0]}</Text>
-                        <Text style={styles.cellname}>{this.data[i][1]}</Text>
-                        <Text style={styles.celltype}>{this.data[i][2]}</Text>
+                    <View key={this.data[i].Checkout_ID} style={rowstyle}>
+                        <Text style={styles.cellsampleid}>{this.state.tableData[i].Checkout_ID}</Text>
+                        <Text style={styles.cellname}>{this.data[i].Sam_Type}</Text>
                         <Text style={styles.good_standing}>GOOD STANDING</Text>
-                        <Text style={styles.cellborrow_date}>{this.data[i][3]}</Text>
-                        <Text style={styles.celldue_date}>{this.data[i][4]}</Text>
-                        <Text style={styles.cellfirstname}>{this.data[i][5]}</Text>
-                        <Text style={styles.celllastname}>{this.data[i][6]}</Text>
+                        <Text style={styles.cellborrow_date}>{this.data[i].Sam_RemoveDate}</Text>
+                        <Text style={styles.celldue_date}>{this.data[i].Sam_ReturnDueDate}</Text>
+                        <Text style={styles.cellfirstname}>{this.data[i].Cus_First}</Text>
+                        <Text style={styles.celllastname}>{this.data[i].Cus_Last}</Text>
                         <View style={styles.chargebutton}>
                             <Button color='#245760' title="charge"/>
                         </View>
@@ -647,11 +684,6 @@ export class Home extends React.Component{
                                             <Text style={styles.headertext}>Name</Text>
                                         </TouchableOpacity>
                                     </View>
-                                    <View style={styles.theadtype}>
-                                        <TouchableOpacity onPress={() => this.Sort(2)}>
-                                            <Text style={styles.headertext}>Type</Text>
-                                        </TouchableOpacity>
-                                    </View>
                                     <View style={styles.theadstatus}>
                                         <TouchableOpacity onPress={() => this.Sort(4)}>
                                             <Text style={styles.headertext}>Status</Text>
@@ -678,15 +710,16 @@ export class Home extends React.Component{
                                         </TouchableOpacity>
                                     </View>
                                 </View>
-                                <View style={styles.tabledata}>
+                                <ScrollView style={styles.tabledata}>
                                 {table}
-                                </View>
+                                </ScrollView>
                             </View>
                         </View>
                     </View>
                 </View>
             </View>
         );
+        this.updateSearch('')
     };
 };
 

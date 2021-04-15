@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignContent: 'center',
         alignItems: 'center',
-        height: '100%',
+        height: normalize(150),
+        maxHeight: normalize(150),
         flexDirection: 'row',
     },
 
@@ -151,9 +152,7 @@ const styles = StyleSheet.create({
     },
 
     tabledata: {
-      display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-evenly',
+      maxHeight: normalize(90),
     },
 
     thead:{
@@ -161,7 +160,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flex: 1,
         backgroundColor: '#F4F4FB',
-        minHeight: '20%',
+        minHeight: normalize(10),
         alignItems: 'center',
     },
     headertext:{

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="FLRBRDS DB" uuid="9dc701aa-fbf9-4b2d-b4ff-97f6fd91a756">
+      <driver-ref>mysql_aurora</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql:aurora://flrbrds-instance-1.ciuv26ztpehr.us-east-2.rds.amazonaws.com:3306/flrbrds</jdbc-url>
+    </data-source>
+  </component>
+</project>
