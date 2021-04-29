@@ -11,15 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4c2322e-7899-4168-b557-eae62a863872" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/styles.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +96,8 @@
       <workItem from="1617752615570" duration="40000" />
       <workItem from="1617828474591" duration="7712000" />
       <workItem from="1617882566106" duration="5250000" />
-      <workItem from="1618449886033" duration="35198000" />
+      <workItem from="1618449886033" duration="35227000" />
+      <workItem from="1619665742262" duration="1238000" />
     </task>
     <servers />
   </component>
@@ -139,22 +133,22 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="805" y="311" key="FileChooserDialogImpl/-1920.349.1920.1030/0.0.2048.1112@0.0.2048.1112" timestamp="1617752656911" />
-    <state width="1281" height="279" key="GridCell.Tab.0.bottom" timestamp="1618473063672">
+    <state width="1860" height="279" key="GridCell.Tab.0.bottom" timestamp="1618495888266">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1281" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1618473063672" />
-    <state width="1281" height="279" key="GridCell.Tab.0.center" timestamp="1618473063672">
+    <state width="1860" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1618495888266" />
+    <state width="1860" height="279" key="GridCell.Tab.0.center" timestamp="1618495888266">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1281" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1618473063672" />
-    <state width="1281" height="279" key="GridCell.Tab.0.left" timestamp="1618473063672">
+    <state width="1860" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1618495888266" />
+    <state width="1860" height="279" key="GridCell.Tab.0.left" timestamp="1618495888250">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1281" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1618473063672" />
-    <state width="1281" height="279" key="GridCell.Tab.0.right" timestamp="1618473063672">
+    <state width="1860" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1618495888250" />
+    <state width="1860" height="279" key="GridCell.Tab.0.right" timestamp="1618495888266">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1281" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1618473063672" />
+    <state width="1860" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1618495888266" />
     <state x="85" y="649" key="SettingsEditor" timestamp="1616031221586">
       <screen x="0" y="0" width="1152" height="2008" />
     </state>

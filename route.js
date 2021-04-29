@@ -2,12 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 var cors = require('cors')
+var db = require('databaseinfo.js')
 
 const connection = mysql.createPool({
-    host     : 'flrbrds-instance-1.ciuv26ztpehr.us-east-2.rds.amazonaws.com',
-    user     : 'admin',
-    password : 'password',
-    database : 'flrbrds'
+    host     : db.host,
+    user     : db.username,
+    password : db.password,
+    database : db.name
 });
 
 // Starting our app.
