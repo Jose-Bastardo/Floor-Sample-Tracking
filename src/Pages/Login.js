@@ -1,9 +1,6 @@
 import * as React from 'react';
 import {Button, Image, Text, TextInput, TouchableOpacity, View, ScrollView} from 'react-native';
 import {styles} from '../styles';
-import {default as readcustomers} from '../../route.js';
-
-readcustomers();
 
 export default class Login extends React.Component{
     state = {
@@ -13,6 +10,7 @@ export default class Login extends React.Component{
     }
 
     render(){
+
         const { emailinput, passwordinput, notificationtext } = this.state;
 
         // @ts-ignore

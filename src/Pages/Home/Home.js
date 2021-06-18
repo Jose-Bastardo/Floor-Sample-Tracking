@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Button, Image, Text, TextInput, TouchableOpacity, View, ScrollView} from 'react-native';
-import {styles} from '../styles';
+import {styles} from '../../styles';
 import {SearchBar,} from 'react-native-elements';
 
 export default class Home extends React.Component{
@@ -12,26 +12,14 @@ export default class Home extends React.Component{
 
     data = this.state.tableData;
 
+    loaded = 0
+
     // @ts-ignore
     setdata = query => {
         this.setState({
             tableData: query
         });
     };
-
-    test() {
-
-        fetch('http://192.168.1.195:3000/samples', {
-            mode: 'cors',
-        })
-            .then(response => response.json())
-            .then(query => this.setState({
-                tableData: query
-            }))
-            .catch((error) => {
-                console.error(error);
-            });
-    }
 
     orderIDSort = 1
     NameSort = 0
@@ -415,7 +403,7 @@ export default class Home extends React.Component{
 
     render() {
 
-        fetch('http://192.168.1.195:3000/samples', {
+        /*fetch('http://192.168.1.195:3000/samples', {
             mode: 'cors',
         })
             .then(response => response.json())
@@ -430,9 +418,38 @@ export default class Home extends React.Component{
             this.state.tableData[i].Sam_RemoveDate = a[0]
             a = this.state.tableData[i].Sam_ReturnDueDate.split('T')
             this.state.tableData[i].Sam_ReturnDueDate = a[0]
+        }*/
+
+        if (this.loaded == 0){
+          fetch('http://192.168.1.195:3000/Customers', {
+              mode: 'cors',
+          })
+              .then(response => response.json())
+              .then(customerslist => {
+                console.log(customerslist)
+                var data = []
+                customerslist.forEach( customer => {
+                  customer["borrowed_samples"].forEach( sample => {
+                    const checkoutid = sample["checkout_id"]
+                    const sampleid = sample["sample_id"]
+                    const samplename = sample["name"]
+                    const borrowdate = sample["checkout_date"].split("T")[0]
+                    const duedate = sample["due_date"].split("T")[0]
+                    const firstname = customer["first_name"]
+                    const lastname = customer["last_name"]
+                      data.push({Checkout_ID: checkoutid, Sample_ID: sampleid, Sam_Type: samplename, Sam_RemoveDate: borrowdate, Sam_ReturnDueDate: duedate, Cus_First: firstname, Cus_Last: lastname})
+                    })
+                  })
+                  this.setState({tableData: data})
+                })
+              .catch((error) => {
+                  console.error(error);
+              });
+
+          this.data = this.state.tableData
         }
 
-        this.data = this.state.tableData
+        this.loaded = 1
 
         const { search } = this.state;
 
@@ -446,24 +463,24 @@ export default class Home extends React.Component{
         var curdate = new Date()
         curdate.setHours(0,0,0,0)
 
-        for (var i = 0; i < this.data.length; i++) {
+        for (var i = 0; i < this.state.tableData.length; i++) {
             if (i % 2 == 0) {
                 rowstyle = styles.rownostripe
             } else {
                 rowstyle = styles.rowstripe;
             }
-            var duedate = new Date(this.data[i].Sam_ReturnDueDate)
+            var duedate = new Date(this.state.tableData[i].Sam_ReturnDueDate)
 
             if(curdate > duedate) {
                 table.push(
-                    <View key={this.data[i].Checkout_ID} style={rowstyle}>
-                        <Text style={styles.cellsampleid}>{this.state.tableData[i].Checkout_ID}</Text>
-                        <Text style={styles.cellname}>{this.data[i].Sam_Type}</Text>
+                    <View key={this.state.tableData[i]["Checkout_ID"]} style={rowstyle}>
+                        <Text style={styles.cellsampleid}>{this.state.tableData[i]["Checkout_ID"]}</Text>
+                        <Text style={styles.cellname}>{this.state.tableData[i]["Sam_Type"]}</Text>
                         <Text style={styles.overdue}>OVERDUE</Text>
-                        <Text style={styles.cellborrow_date}>{this.data[i].Sam_RemoveDate}</Text>
-                        <Text style={styles.celldue_date}>{this.data[i].Sam_ReturnDueDate}</Text>
-                        <Text style={styles.cellfirstname}>{this.data[i].Cus_First}</Text>
-                        <Text style={styles.celllastname}>{this.data[i].Cus_Last}</Text>
+                        <Text style={styles.cellborrow_date}>{this.state.tableData[i].Sam_RemoveDate}</Text>
+                        <Text style={styles.celldue_date}>{this.state.tableData[i].Sam_ReturnDueDate}</Text>
+                        <Text style={styles.cellfirstname}>{this.state.tableData[i].Cus_First}</Text>
+                        <Text style={styles.celllastname}>{this.state.tableData[i].Cus_Last}</Text>
                         <View style={styles.chargebutton}>
                             <Button color='#245760' title="charge"/>
                         </View>
@@ -472,14 +489,14 @@ export default class Home extends React.Component{
             }
             else{
                 table.push(
-                    <View key={this.data[i].Checkout_ID} style={rowstyle}>
+                    <View key={this.state.tableData[i].Checkout_ID} style={rowstyle}>
                         <Text style={styles.cellsampleid}>{this.state.tableData[i].Checkout_ID}</Text>
-                        <Text style={styles.cellname}>{this.data[i].Sam_Type}</Text>
+                        <Text style={styles.cellname}>{this.state.tableData[i].Sam_Type}</Text>
                         <Text style={styles.good_standing}>GOOD STANDING</Text>
-                        <Text style={styles.cellborrow_date}>{this.data[i].Sam_RemoveDate}</Text>
-                        <Text style={styles.celldue_date}>{this.data[i].Sam_ReturnDueDate}</Text>
-                        <Text style={styles.cellfirstname}>{this.data[i].Cus_First}</Text>
-                        <Text style={styles.celllastname}>{this.data[i].Cus_Last}</Text>
+                        <Text style={styles.cellborrow_date}>{this.state.tableData[i].Sam_RemoveDate}</Text>
+                        <Text style={styles.celldue_date}>{this.state.tableData[i].Sam_ReturnDueDate}</Text>
+                        <Text style={styles.cellfirstname}>{this.state.tableData[i].Cus_First}</Text>
+                        <Text style={styles.celllastname}>{this.state.tableData[i].Cus_Last}</Text>
                         <View style={styles.chargebutton}>
                             <Button color='#245760' title="charge"/>
                         </View>
@@ -507,7 +524,7 @@ export default class Home extends React.Component{
                 </View>
                 <View style={styles.mainbody}>
                     <View style={styles.header}>
-                        <Image style={styles.monochromelogo} source={require('../assets/Logo.png')}/>
+                        <Image style={styles.monochromelogo} source={require('../../assets/Logo.png')}/>
                     </View>
                     <View style={styles.homemain}>
                         <View style={styles.tableview}>

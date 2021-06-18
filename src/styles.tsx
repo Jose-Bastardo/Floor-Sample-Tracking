@@ -22,11 +22,10 @@ const styles = StyleSheet.create({
 
     body: {
         backgroundColor: '#29C785',
+        height: "100vh",
         display: 'flex',
         alignContent: 'center',
         alignItems: 'center',
-        height: normalize(150),
-        maxHeight: normalize(150),
         flexDirection: 'row',
     },
 
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
         width: '100%',
         display: 'flex',
         alignItems: 'center',
-        height: '90%',
+        height: '80%',
         paddingTop: '1%',
     },
 
@@ -115,9 +114,9 @@ const styles = StyleSheet.create({
         width: '97%',
         alignContent: 'center',
         borderRadius: 20,
-        paddingBottom: '4%',
+        //paddingBottom: '4%',
         backgroundColor: 'white',
-        height: '85%',
+        height: '95%',
         paddingTop: '.4%',
     },
 
@@ -186,7 +185,7 @@ const styles = StyleSheet.create({
         color: '#777777',
         fontWeight: 'bold',
         position: 'absolute',
-        marginLeft: '11%',
+        marginLeft: normalize(55),
         fontFamily: 'Arial',
     },
     theadtype: {
@@ -236,14 +235,14 @@ const styles = StyleSheet.create({
         fontFamily: 'Arial',
         width: normalize(40),
         position: 'absolute',
-        marginLeft: '3%',
+        marginLeft: '2%',
     },
     cellname: {
         fontWeight: 'bold',
         fontFamily: 'Arial',
         width: normalize(80),
         position: 'absolute',
-        marginLeft: normalize(30)
+        marginLeft: normalize(55)
     },
     celltype: {
         fontWeight: 'bold',
@@ -317,7 +316,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         fontWeight: 'bold',
         fontFamily: 'Arial',
-        width: normalize(25),
+        width: normalize(30),
         height: normalize(5),
         backgroundColor: 'lightgreen',
         borderRadius: 10,
