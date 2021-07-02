@@ -403,23 +403,6 @@ export default class Home extends React.Component{
 
     render() {
 
-        /*fetch('http://192.168.1.195:3000/samples', {
-            mode: 'cors',
-        })
-            .then(response => response.json())
-            .then(query => this.setState({
-                tableData: query
-            }))
-            .catch((error) => {
-                console.error(error);
-            });
-        for(let i = 0; i<this.state.tableData.length; i++){
-            let a = this.state.tableData[i].Sam_RemoveDate.split('T')
-            this.state.tableData[i].Sam_RemoveDate = a[0]
-            a = this.state.tableData[i].Sam_ReturnDueDate.split('T')
-            this.state.tableData[i].Sam_ReturnDueDate = a[0]
-        }*/
-
         if (this.loaded == 0){
           fetch('http://192.168.1.195:3000/Customers', {
               mode: 'cors',

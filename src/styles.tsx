@@ -167,13 +167,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Arial',
         color: '#808080',
     },
-    theadsampleidcheckout: {
-        color: '#777777',
-        fontWeight: 'bold',
-        fontFamily: 'Arial',
-        paddingLeft: '16.8%',
-    },
-
     theadsampleid: {
         color: '#777777',
         fontWeight: 'bold',
@@ -329,6 +322,11 @@ const styles = StyleSheet.create({
     chargebutton:{
         position: 'absolute',
         marginLeft: '93%'
+    },
+    nextbutton:{
+        position: 'absolute',
+        bottom: '40px',
+        right: '100px'
     },
     loginbody:{
         backgroundColor: '#245760',

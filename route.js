@@ -35,3 +35,27 @@ app.get('/Customers', async(req, res) => {
 
   client.close()
 });
+
+app.get('/Samples', async(req, res) => {
+  const client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  client.connect(async(err, client) => {
+    if (err) console.log('failed to connect')
+    else {
+      const database = client.db('Database')
+      const samplesCollection = database.collection('Samples')
+      const documentcursor = await samplesCollection.find()
+      samples = await documentcursor.toArray()
+      res.send(samples)
+      //console.log(customers)
+      //res.send(customers)
+      documentcursor.close()
+      console.log("Complete")
+    }
+  })
+
+  client.close()
+});
