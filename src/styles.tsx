@@ -325,8 +325,8 @@ const styles = StyleSheet.create({
     },
     nextbutton:{
         position: 'absolute',
-        bottom: '40px',
-        right: '100px'
+        bottom: '80px',
+        right: '200px'
     },
     loginbody:{
         backgroundColor: '#245760',

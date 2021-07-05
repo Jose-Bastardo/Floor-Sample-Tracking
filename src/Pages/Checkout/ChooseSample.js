@@ -19,11 +19,12 @@ export default class ChooseSample extends React.Component{
     var data = []
     var samples = []
 
-    await fetch('http://192.168.1.195:3000/Samples', {
+    await fetch('http://localhost:5000/api/samples', {
         mode: 'cors',
     })
-        .then(response => response.json())
+        .then(response => response.json(console.log(response)))
         .then(samplelist => {
+          console.log(samplelist)
           samplelist.forEach( sample => {
             const sampleid = sample["_id"]
             const samplename = sample["name"]
@@ -88,7 +89,7 @@ export default class ChooseSample extends React.Component{
     }
 
     return(
-      <View style={styles.tableview}>
+      <View>
           <View style={styles.searchbarrow}>
               <View style={styles.searchbarview}>
                   <SearchBar
@@ -134,9 +135,6 @@ export default class ChooseSample extends React.Component{
               <ScrollView style={styles.tabledata}>
                 {table}
               </ScrollView>
-          </View>
-          <View style={styles.nextbutton}>
-            <Button color="#245760" title="next"/>
           </View>
       </View>
     );

@@ -1,4 +1,4 @@
-import {createStackNavigator,} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import {NavigationContainer,} from '@react-navigation/native';
 import Login from './Login.js';

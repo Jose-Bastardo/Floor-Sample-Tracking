@@ -3,10 +3,39 @@ import {Button, Image, Text, TextInput, TouchableOpacity, View, ScrollView} from
 import {styles} from '../../styles';
 import {SearchBar,} from 'react-native-elements';
 import ChooseSample from './ChooseSample.js';
+import ChooseCustomer from './ChooseCustomer.js';
 
 // @ts-ignore
 export default class Checkout extends React.Component{
+  constructor(props){
+    super(props);
+    this.nextbutton = this.nextbutton.bind(this);
+    this.state = {
+      table: <ChooseSample/>,
+      tableid: 0,
+      chosensamples: [],
+      customer: [],
+    }
+  }
 
+  nextbutton = () =>{
+    switch (this.state.tableid) {
+      case 0:
+        this.setState({
+          table: <ChooseCustomer/>,
+          tableid: 1
+        })
+        break;
+      case 1:
+        this.setState({
+          table: <ChooseSample/>,
+          tableid: 0,
+        })
+        break;
+      default:
+
+    }
+  }
     render() {
       // @ts-ignore
       const navigation = this.props.navigation;
@@ -30,7 +59,12 @@ export default class Checkout extends React.Component{
                       <Image style={styles.monochromelogo} source={require('../../assets/Logo.png')}/>
                   </View>
                   <View style={styles.homemain}>
-                      <ChooseSample/>
+                    <View style={styles.tableview}>
+                      {this.state.table}
+                      <View style={styles.nextbutton}>
+                        <Button color="#245760" title="next" onPress={this.nextbutton}/>
+                      </View>
+                    </View>
                   </View>
               </View>
           </View>

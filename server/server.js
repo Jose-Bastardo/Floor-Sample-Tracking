@@ -1,0 +1,22 @@
+import connectDB from './backend/config/db.js'
+import customersRoute from './backend/routes/customersRoute.js'
+import samplesRoute from './backend/routes/samplesRoute.js'
+import express from 'express'
+import dotenv from 'dotenv'
+import cors from 'cors'
+
+//dotenv config
+dotenv.config()
+
+const app = express()
+
+//Creating API for user
+app.use(cors())
+app.use('/api/customers', customersRoute)
+app.use('/api/samples', samplesRoute)
+
+
+const PORT = process.env.PORT || 5000
+
+//Express js listen method to run project on http://localhost:5000
+app.listen(PORT, console.log(`App is running in ${process.env.NODE_ENV} mode on port ${PORT}`))

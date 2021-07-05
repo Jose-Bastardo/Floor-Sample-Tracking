@@ -404,7 +404,7 @@ export default class Home extends React.Component{
     render() {
 
         if (this.loaded == 0){
-          fetch('http://192.168.1.195:3000/Customers', {
+          fetch('http://localhost:5000/api/customers/', {
               mode: 'cors',
           })
               .then(response => response.json())
