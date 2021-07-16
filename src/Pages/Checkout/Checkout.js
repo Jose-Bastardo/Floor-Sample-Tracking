@@ -4,6 +4,7 @@ import {styles} from '../../styles';
 import {SearchBar,} from 'react-native-elements';
 import ChooseSample from './ChooseSample.js';
 import ChooseCustomer from './ChooseCustomer.js';
+import PaymentInfo from './PaymentInfo.js';
 
 // @ts-ignore
 export default class Checkout extends React.Component{
@@ -27,6 +28,12 @@ export default class Checkout extends React.Component{
         })
         break;
       case 1:
+        this.setState({
+          table: <PaymentInfo/>,
+          tableid: 2,
+        })
+        break;
+      case 2:
         this.setState({
           table: <ChooseSample/>,
           tableid: 0,

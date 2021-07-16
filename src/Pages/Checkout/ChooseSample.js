@@ -22,9 +22,8 @@ export default class ChooseSample extends React.Component{
     await fetch('http://localhost:5000/api/samples', {
         mode: 'cors',
     })
-        .then(response => response.json(console.log(response)))
+        .then(response => response.json())
         .then(samplelist => {
-          console.log(samplelist)
           samplelist.forEach( sample => {
             const sampleid = sample["_id"]
             const samplename = sample["name"]
